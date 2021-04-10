@@ -1,0 +1,729 @@
+*
+{
+	margin: 0 ;
+	padding: 0 ;
+	box-sizing: border-box;
+}
+body
+{
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-color: #034e9f14 !important;
+}
+
+.menu-bar ul
+{
+	display: inline-flex;
+	list-style-type: none;
+	color: #fff;
+}
+a.signout-btn {
+    color: #fff !important;
+}
+.menu-item ul li
+{
+	
+	margin: 6px;
+	padding: 5px;
+}
+.menu-bar ul li a
+{
+	text-decoration: none;
+	color: #fff;
+	background-color: #88c23f ;
+	padding: 5px;
+}
+
+.sub-menu-1
+{
+	display: none;
+}
+.menu-bar ul li:hover .sub-menu-1
+{
+	display: block;
+	position: absolute;
+	background: #88c23f;
+    margin-top: 5px;
+    margin-left: 0px;
+    height: 35px;
+    width: 120px;
+}
+.menu-bar ul li:hover .sub-menu-1 ul
+{
+	display: block;
+}
+.menu-bar ul li:hover .sub-menu-1 ul li
+{
+	width: 160px;
+    font-size: 0.875rem;
+    padding: 0px !important;
+    border-bottom: 0px !important;
+    background: transparent;
+    border-radius: 0;
+    text-align: left;
+}
+.menu-bar ul li:hover .sub-menu-1 ul li:last-child
+{
+	border-bottom: none;
+}
+.menu-bar ul li:hover .sub-menu-1 ul li a:hover
+{
+	color: #fff;
+}
+.iconsmargin
+{
+	margin: 2px;
+	align-self: center;
+}
+.menu-bar-Logo
+{
+
+	text-align: left;
+	font-family:  Verdana;
+	font-size: "60px";
+	font-weight: bolder;
+	font-variant-caps: all-petite-caps;
+	
+}
+.menu-bar-Logo ul
+{
+	display: inline-flex;
+	list-style-type: none;
+	color: greenyellow;
+}
+.menu-bar-Logo ul li
+{
+	width: 100%;
+	margin: 10px;
+	padding: 10px;
+}
+.MuiTableCell-root{
+	padding: 0px !important;
+}
+.makeStyles-menuButton-5{
+	margin-right: 0px !important;
+}
+.MuiFormControl-root {
+	margin-bottom: 15px !important;
+	width: fit-content;
+}
+.MuiSelect-select:not([multiple]) option, .MuiSelect-select:not([multiple]) optgroup {
+    background-color: #9c9898 !important;
+}
+.jss2 {
+    background-size: cover;
+    background-color: #fafafa;
+    background-image: url(../images/img-agriculture.jpg);
+    background-repeat: no-repeat;
+	background-position: center;
+	width: 50%;
+	height: 650px;
+}
+.main-grid{
+	background-color: #fff;
+}
+.MuiOutlinedInput-input {
+    padding: 18.5px 14px;
+    color: #fff !important;
+}
+td.data-insert {
+	vertical-align: top;
+	float: right;
+	padding: 20px 30px;
+}
+.GridSection{
+	overflow: scroll;
+    height: 500px;
+}
+.bg-image{
+	background-image: url("../images/farmer-standing-rice-field-with-tablet.jpg");
+	height: 500px;
+  	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+  	position: relative;
+}
+.homebg-image{
+	background-image: url("../images/drought-water-conservation-and-irrigation-for-your-lawn-1080x720.jpg");
+	height: 500px;
+  	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+  	position: relative;
+}
+.aboutbg-image{
+	background-image: url("../images/farm-man-working-his-organic-lettuce-garden.jpg");
+	height: 500px;
+  	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+	  position: relative;
+}
+.digibg-image{
+	background-image: url("../images/Farmer.jpg");
+	height: 500px;
+    width: 1263px;
+  	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+	  position: relative;
+}
+.regbg-image{
+	background-image: url("../images/holded-plant.jpg");
+    height: 512px;
+    width: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    display: inline-block;
+}
+.regbg-image1{
+	background-image: url("../images/holded-plant.jpg");
+    height: 512px;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    display: inline-block;
+}
+.banner-content{
+	background-color: #204001fc;
+    height: 250px;
+    width: 900px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+	color: white;
+	opacity: 0.7;
+}
+.digicrop-logo{
+	background-image: url("../images/Logo.png");
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+	position: relative;
+	transform: translate(60%, -15%);
+    z-index: 1;
+    width: 122px;
+    height: 115px;
+    background-color: #fff;
+    border-radius: 70px;
+}
+.regbanner-content{
+	background-color: #204001fc;
+    height: 250px;
+    width: 900px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+	color: white;
+	opacity: 0.7;
+}
+.digibanner-content{
+	background-color: #204001fc;
+    height: 220px;
+    width: 830px;
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, 14%);
+    color: white;
+    opacity: 0.7;
+}
+.digi-title h1 {
+    font-size: 60px;
+    font-weight: 100;
+    margin: 40px 100px;
+    text-align: left;
+}
+.regdigi-title h1 {
+    font-size: 60px;
+    font-weight: 100;
+    margin: 40px 100px;
+    text-align: left;
+}
+.content{
+	margin: 40px 110px;
+    text-align: left;
+}
+.content h1{
+	font-size: 80px;
+	line-height: initial;
+	font-weight: 100;
+}
+.content h3{
+	font-size: 32px;
+	font-weight: 100;
+	line-height: initial;
+}
+
+.homebanner-content{
+	background-color: #204001fc;
+    height: 250px;
+    width: 800px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    transform: translate(6%, -50%);
+    color: white;
+    opacity: 0.7;
+    left: 32.7%;
+}
+.hand-img{
+	background-image: url("../images/Hand.png");
+	height: 500px;
+    width: 480px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translate(-110%, -25%);
+}
+.homecontent{
+	margin: 15px 45px;
+	text-align: left;
+	transform: translate(0%, -235%);
+}
+.homecontent h1{
+	font-size: 60px;
+	line-height: initial;
+	font-weight: 100;
+}
+.homecontent h4{
+	font-size: 22px;
+	font-weight: 100;
+	line-height: initial;
+}
+.MuiToolbar-root.MuiToolbar-regular.MuiToolbar-gutters {
+    z-index: 1;
+}
+.MuiTableCell-root{
+	border-bottom: 0px !important;
+	width: 80%;
+}
+.MuiButton-label{
+	color: #fff !important;
+	border: 1px solid #2d70d8;
+	color: black;
+	height: 50px;
+	background-color: #88c23f;
+	font-weight: bolder;
+	width:360px;
+}
+button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined {
+    width: 80%;
+	border: 0px !important;
+	padding: 0px !important;
+}
+.MuiButton-root{
+	padding: 0px !important;
+}
+.divider{
+	border-bottom: 3px hsl(102, 62%, 60%) solid;
+	width: 50%;
+	margin: auto;
+  }
+  .about-divider{
+	border-bottom: 3px hsl(102, 62%, 60%) solid;
+	width: 80%; 
+  }
+  .DivMarginFooterInner {
+    background-color: #034e9f;
+    border-radius: 0px;
+    padding: 10px 30px;
+}
+
+.MuiPaper-root{
+	background-color: transparent !important;
+	transition: unset !important;
+}
+.MuiPaper-rounded{
+	border-radius: 0px !important;
+}
+.MuiPaper-elevation1 {
+	box-shadow: 0px 0px 0px 0px !important;
+	text-align: right;
+}
+.img-1{
+	background-image: url("../images/DigiCorp-img1.jpg");
+	height: 350px;
+    width: 100%;
+    background-repeat: no-repeat;
+	background-size: cover;
+}
+.img-2{
+	background-image: url("../images/water-sprinklers.jpg");
+	height: 350px;
+    width: 100%;
+    background-repeat: no-repeat;
+	background-size: cover;
+}
+.regimg-2{
+	background-image: url("../images/Video-Link.jpg");
+	height: 350px;
+    width: 100%;
+    background-repeat: no-repeat;
+	background-size: cover;
+}
+.regimg-3{
+	background-image: url("../images/Logo.png");
+	height: 72px;
+    width: 75px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translate(30%, 50%);
+    background-color: #fff;
+    border-radius: 50px;
+}
+.img-3{
+	background-image: url("../images/agri-img.jpg");
+	height: 350px;
+    width: 100%;
+    background-repeat: no-repeat;
+	background-size: cover;
+}
+.digiimg-1{
+	background-image: url("../images/sprinkler.jpg");
+	height: 350px;
+    width: 100%;
+    background-repeat: no-repeat;
+	background-size: cover;
+}
+.digiimg-2{
+	background-image: url("../images/maxresdefault.jpg");
+	height: 350px;
+    width: 100%;
+    background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+.regiimg-2{
+	background-image: url("../images/Video-Link.jpg");
+	height: 350px;
+    width: 100%;
+    background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+.krushi-gadget {
+    background-image: url("../images/Diagram.jpg");
+    height: 380px;
+    width: 550px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 30px 70px 30px 0px;
+    float: right;
+}
+.krushilogo-image{
+	background-image: url("../images/Krishipurna-Logo.png");
+	height: 130px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 558px;
+    margin: 30px 0px 30px 70px;
+}
+.krushiicon1-image{
+	background-image: url("../images/Krishipurna-Icon-1.png");
+	height: 145px;
+    width: 180px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin: auto;
+}
+.krushiicon2-image{
+	background-image: url("../images/Krishipurna-Icon-2.png");
+	height: 145px;
+    width: 180px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin: auto;
+}
+.krushiicon3-image{
+	background-image: url("../images/Krishipurna-Icon-3.png");
+	height: 145px;
+    width: 180px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin: auto;
+}
+.makeStyles-paper-11{
+	padding: 0px !important;
+	text-align: left !important;
+	color: #000;
+}
+h1.title {
+	line-height: normal;
+	font-weight: lighter;
+	color: #034e9f;
+	font-size: 32px;
+	padding-top: 15px;
+	text-align: left;
+}
+h4.title-content {
+    line-height: 24px !important;
+    font-weight: lighter;
+    margin-bottom: 10px !important;
+    font-size: 20px !important;
+    color: #000;
+}
+.title-content{
+	line-height: normal;
+	font-weight: lighter;
+	margin-top: 15px;
+	font-size: 22px;
+	color: #000;
+	text-align: left;
+}
+.makeStyles-paper-15 {
+    padding: 0px !important;
+}
+.phone{
+	display: inherit;
+	margin-right: 20px;
+	padding: 5px 0px;
+}
+.email{
+	display: inherit;
+	margin-right: 20px;
+	padding: 5px 0px;
+}
+.search{
+	padding: 5px 0px;
+}
+.top-searchbar{
+	background-color: #88c23f;
+	height: 35px;
+    display: inherit;
+}
+.makeStyles-title-4{
+	font-weight: 100 !important;
+}
+.MuiPaper-elevation4{
+	box-shadow: 0px 0px 0px 0px !important;
+}
+.phone svg {
+    margin-top: 5px;
+}
+.email svg {
+    margin-top: 5px;
+}
+.makeStyles-searchIcon-5{
+	height: 25px !important;
+}
+.DivFooterCopyright1{
+	text-align: left;
+	color: #5f882c;
+    font-size: 15px;
+	font-weight: 100;
+	margin-top: 8px;
+}
+.DivFooterCopyright2{
+	text-align: right;
+	font-size: 15px;
+	font-weight: 100;
+	color: #fff;
+	display: inline-flex;
+}
+.MuiTable-root{
+	width: 100%;
+    display: table;
+    border-spacing: 40px 0px !important;
+}
+.MuiTableCell-stickyHeader{
+	background-color: transparent !important;
+}
+.MuiFormLabel-root{
+	color: rgb(0 0 0) !important;
+}
+.MuiInputBase-root{
+	color: #fff !important;
+}
+.MuiFilledInput-underline:before {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "\00a0";
+    position: absolute;
+    transition: border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border-bottom: 1px solid rgb(255 255 255) !important;
+    pointer-events: none;
+}
+.MuiInputBase-input{
+	
+	color: #000 !important;
+	background-color: #fff !important;
+}
+.MuiFilledInput-underline:after {
+    
+    border-bottom: 2px solid #88c23f !important;
+}
+.MuiSelect-iconFilled {
+    right: 7px;
+    color: #88c23f !important;
+}
+.MuiTableCell-sizeSmall {
+    padding: 6px 45px 6px 45px !important;
+    border: 1px solid #000 !important;
+}
+.datevalue {
+    /* padding: 6px 45px 6px 45px !important; */
+    border: 1px solid #000 !important;
+}
+.MuiGrid-grid-xs-7{
+	padding: 50px 65px;
+}
+
+.MuiGrid-grid-xs-5{
+	padding: 30px 65px;
+}
+.MuiGrid-spacing-xs-3 > .MuiGrid-item {
+    padding: 12px 45px !important;
+}
+.makeStyles-text1-6 {
+    width: 100%;
+    border: 0px none;
+    padding: 4px !important;
+    border-radius: 20px;
+    outline: none !important;
+}
+.socialicon {
+    padding: 0px 5px 0px 5px;
+    margin: -3px 0px 0px 0px;
+}
+.bg-color{
+	background-color: #034e9f ;
+	padding: 108.11px 50px;
+}
+.abouttitle-content{
+	line-height: normal;
+	font-weight: lighter;
+	margin-top: 15px;
+	font-size: 20px;
+	text-align: left;
+	color: #fff;
+	text-align: justify;
+}
+.abouttitle{
+	color: #88c23f ;
+	text-align: left;
+	
+}
+.krushi-content {
+    text-align: left;
+    margin: 30px 0px 30px 70px;
+    line-height: 28px;
+    font-size: 16px;
+    font-weight: lighter;
+}
+.img-title{
+	text-align: center;
+    padding-top: 15px;
+    font-size: 16px;
+}
+.krushi-iconimg {
+    display: flex;
+    background-color: #fff;
+    padding: 30px;
+}
+.MuiPaper-elevation1 .address {
+    box-shadow: 0px 0px 0px 0px !important;
+    text-align: left;
+    padding: 45px 20px 20px 20px;
+    background-color: #0000008c;
+    color: #fff;
+}
+.address a{
+	color: #fff !important;
+	text-decoration: none;
+}
+#idFirstName, #idLastName, #idEmail, #idPhone, #idPassword{
+	width: 460px !important;
+}
+.log-section {
+    height: 80px;
+    background-color: #034e9f;
+}
+h3.logotitle {
+    font-size: 45px;
+    text-align: left;
+}
+.logotitle span em{
+    color: #fff;
+}
+.logotitle em {
+    color: #88c23f;
+}
+.banner-title {
+    background-color: #204001fc;
+    height: 220px;
+    width: 500px;
+    text-align: center;
+    position: absolute;
+    left: 30%;
+    transform: translate(-85%, 133%);
+    color: white;
+    opacity: 0.7;
+	z-index: 1;
+	padding: 25px 15px;
+}
+h1.titlebg-color {
+    background-color: #88c23f;
+    width: 260px;
+    margin: 0px 90px;
+}
+.banner-title h1 {
+    font-size: 55px;
+    font-weight: 100;
+}
+button#regmenu-btn {
+    width: auto;
+	margin: 0px 10px 0px 0px;
+	height: 45px;
+}
+#regmenu-btn .MuiButton-label {
+    color: #fff !important;
+    border: 0px !important;
+    height: 29px;
+    background-color: #88c23f;
+    font-weight: bolder;
+    width: 110px !important;
+}
+th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignLeft.MuiTableCell-sizeSmall {
+    background-color: #034e9f;
+    color: #fff;
+}
+.MuiAvatar-root{
+	width: 35px;
+	height: 35px;
+}
+.menu-bar_Profile ul li {
+	padding: 0px;
+	margin: 0px;
+}
+.appbar-menu.MuiToolbar-regular{
+min-height: 50px;
+}
+.menu-bar_Profile .MuiAvatar-root {
+    width: 30px;
+	height: 30px;
+}
+.appbar-menu.MuiToolbar-root{
+	align-items: inherit;
+}
+.menu-bar_Profile ul li:hover .sub-menu-1 ul li a:hover{
+	color: #fff !important;
+}
+.menu-bar ul li a:hover{
+	background-color: #034e9f;
+	color: #fff !important;
+}
+.menu-bar ul li a:active{
+	background-color: #034e9f;
+}
+.menu-bar ul li:hover .sub-menu-1:hover{
+	background-color: #034e9f;
+}
