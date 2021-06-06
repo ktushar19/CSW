@@ -1,0 +1,6 @@
+DELETE  http://localhost:4000/app/Staff/6084227fd1cd6e44ecd7521f
+Content-Type: application/json
+
+{    
+    
+}

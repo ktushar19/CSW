@@ -31,20 +31,15 @@ import ResponsiveDrawer from '../Menu/ResponsiveDrawer';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
 import TextField from "@material-ui/core/TextField";
-import TopBar from '../Common/TopBar'
-import Footer from '../Common/Footer'
 import { useHistory } from "react-router-dom";
-import AddressTab from './AddressTab';
-
-import StaffAPI from '../../StaffAPI';
 
 
 var staffdata = [];
 
-class Staff extends Component{
+class UpdateStaff extends Component{
     constructor(props)
     {
-        super(props);        
+        super();        
         this.state = {
             firstName: '',
             middleName: '',
@@ -53,14 +48,15 @@ class Staff extends Component{
             userName: '',
             password: '',
             staffdata:[],
-            strErrMessage:""
+            strErrMessage:"",
             
         }
         this.HandleChange = this.HandleChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
        this.validate = this.validate.bind(this);
        this.fnShowError = this.fnShowError.bind(this);
-        this.fnUpdate = this.fnUpdate.bind(this);
+       this.UpdateStaff = this.UpdateStaff.bind(this);
+       this.fetchStaff = this.fetchStaff.bind(this);
+       //this.fetchStaff();
     }
 
     fnShowError(Error)
@@ -114,44 +110,34 @@ class Staff extends Component{
    
    
 //need commn filed
-    HandleChange= (e) =>
+    HandleChange(e)
     {
         e.preventDefault();    
-        console.log(e.target.name);
-        console.log(e.target.value);
         this.setState(
             {
-                
                 [e.target.name] : e.target.value,
             }
         )
     }
 
     componentDidMount(){
-        this.fnUpdate();
-        axios.get('http://localhost:4000/app/Staff',)
+        this.fetchStaff();
+        /*
+        axios.get('http://localhost:4000/app/Staff/'+this.props.match.params.id)
         .then(response => {
-            if(response.data.length > 0) {
             this.setState({
                 staffdata:response.data
             })
-        }
         })
         .catch((error) =>{
             console.log(error);
         })
-        
+        */
     }
 
 
-
-    onSubmit(event){
+    UpdateStaff(event){
         event.preventDefault()
-        const isValid = this.validate();        
-        if(!isValid)
-        {    
-        }
-    else{
         const registered = {
             firstName: this.state.firstName,
             middleName: this.state.middleName,
@@ -160,29 +146,19 @@ class Staff extends Component{
             userName: this.state.userName,
             password: this.state.password
         }
+        //alert(registered);
         //to pass data to backend
-        //console.log(registered.userName);
-        axios.post('http://localhost:4000/app/Staff', registered)
+        axios.put('http://localhost:4000/app/Staff/'+this.props.match.params.id, registered)
         .then(response => {
             console.log(response.data);
-            alert("Data Inserted Successfully!");
-            //window.location = "/StaffDetails";
+            //alert(response.data);
+           // window.location = "/StaffDetails";
         })        
-
-        this.setState({
-            firstName: '',
-            middleName: '',
-            lastName: '',
-            email:'',
-            userName: '',
-            password: ''
-        })        
-    }   
+        
 }
-fnUpdate=(e)=>{
-   //this.setState({[e.target.name]:e.target.value});
-       console.log("Inside update");
-       const registered = {
+
+fetchStaff(){
+    const registered = {
         firstName: this.state.firstName,
         middleName: this.state.middleName,
         lastName: this.state.lastName,
@@ -190,18 +166,25 @@ fnUpdate=(e)=>{
         userName: this.state.userName,
         password: this.state.password
     }
-       axios.put('http://localhost:4000/app/Staff/'+this.props.match.params.id, {registered})
-       .then(response => {
-        console.log("fetchStaff data"+ response.data)
-       })    
-}   
-
+    //alert(registered);
+    
+    axios.put('http://localhost:4000/app/Staff/'+this.props.match.params.id, {registered})
+    .then(response => {
+        console.log("fetchStaff data"+ response.data)    
+       
+        this.setState({
+            first_name: response.data.first_name,
+            last_name: response.data.last_name,
+            email: response.data.email
+          }); 
+    })           
+}
 
     render(){
         return(
             <div class="DivOuterMain">
                 <div class="container-fluid">
-                <form onSubmit={this.onSubmit} noValidate>
+                <form onSubmit={this.UpdateStaff} noValidate>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="toolbar-button">
@@ -219,7 +202,7 @@ fnUpdate=(e)=>{
                 <div class="col-sm-12">
                     <div class="toolbar-heading  margin-top-5 ">
                             <span class="title-modules">
-                                Basic Data
+                                Update Basic Data
                             </span>
                             <small> | Employees</small>
                     </div>
@@ -248,7 +231,7 @@ fnUpdate=(e)=>{
                             <label for="exampleInputFirstName">First Name<span class="required">*</span></label>
                             <input type='text' name="firstName" class="form-control" id="idfirstName" placeholder="" 
                                             value={this.state.firstName}
-                                            onChange={(e)=>this.HandleChange} noValidate 
+                                            onChange={this.HandleChange} noValidate 
                                                 />
                              {this.state.firstNameError ?
                                                 <div class="DivErrorMessage">{this.state.firstNameError}</div> :null}
@@ -258,7 +241,7 @@ fnUpdate=(e)=>{
                         <div class="form-group">
                             <label for="exampleInputLastName">Last Name<span class="required">*</span></label>
                             <input type='text' name="lastName" class="form-control" id="exampleInputLastName" placeholder="" value={this.state.lastName}
-                                            onChange={(e)=>this.HandleChange}/>
+                                            onChange={this.HandleChange}/>
                                             {this.state.lastNameError ?
                                                 <div class="DivErrorMessage">{this.state.lastNameError}</div> :null}
                         </div>
@@ -269,7 +252,7 @@ fnUpdate=(e)=>{
                         <div class="form-group">
                             <label for="exampleInputmiddlename">Middle Name<span class="required">*</span></label>
                             <input type="text" class="form-control" name="middleName" id="exampleInputmiddlename" placeholder="" value={this.state.middleName}
-                                            onChange={(e)=>this.HandleChange}/>
+                                            onChange={this.HandleChange}/>
                             {this.state.middleNameError ?
                                                 <div class="DivErrorMessage">{this.state.middleNameError}</div> :null} 
                                </div>
@@ -404,7 +387,7 @@ fnUpdate=(e)=>{
                                         <input type="text" class="form-control"  name="userName" aria-label="Recipient's username" aria-describedby="basic-addon2" 
                                             id='idUserName'
                                             value={this.state.userName}
-                                            onChange={(e)=>this.HandleChange}/>
+                                            onChange={this.HandleChange}/>
                                         {/* <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon2">@example.com</span>
                                         </div> */}                                         
@@ -417,7 +400,7 @@ fnUpdate=(e)=>{
                                         <label for="exampleInputemail">Email<span class="required">*</span></label>
                                         <input class="form-control" name="email" id="exampleInputemail" placeholder=""  type='text'
                                             value={this.state.email}
-                                            onChange={(e)=>this.HandleChange} noValidate/>
+                                            onChange={this.HandleChange} noValidate/>
                                             {this.state.emailError ?
                                                 <div class="DivErrorMessage">{this.state.emailError}</div> :null}
                                     </div>
@@ -431,7 +414,7 @@ fnUpdate=(e)=>{
                                             placeholder= 'Password'
                                             id='idpassword'
                                             value={this.state.password}
-                                            onChange={(e)=>this.HandleChange}
+                                            onChange={this.HandleChange}
                                             className='form-control'
                                             noValidate
                                         />
@@ -455,11 +438,6 @@ fnUpdate=(e)=>{
                         </div> */}
                          </div>              
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <AddressTab></AddressTab>
-                        </div>
-                    </div>
                     </div>
                 </div>
                  </form>
@@ -468,4 +446,4 @@ fnUpdate=(e)=>{
         )
     }
 }
-export default Staff
+export default UpdateStaff

@@ -97,7 +97,8 @@ a.signout-btn {
 	padding: 10px;
 }
 .MuiTableCell-root{
-	padding: 0px !important;
+	padding: 5px !important;
+    border: 1px solid #000;
 }
 .makeStyles-menuButton-5{
 	margin-right: 0px !important;
@@ -109,7 +110,7 @@ a.signout-btn {
 .MuiSelect-select:not([multiple]) option, .MuiSelect-select:not([multiple]) optgroup {
     background-color: #9c9898 !important;
 }
-.jss2 {
+/* .jss2 {
     background-size: cover;
     background-color: #fafafa;
     background-image: url(../images/img-agriculture.jpg);
@@ -117,7 +118,7 @@ a.signout-btn {
 	background-position: center;
 	width: 50%;
 	height: 650px;
-}
+} */
 .main-grid{
 	background-color: #fff;
 }
@@ -134,15 +135,15 @@ td.data-insert {
 	overflow: scroll;
     height: 500px;
 }
-.bg-image{
+/* .bg-image{
 	background-image: url("../images/farmer-standing-rice-field-with-tablet.jpg");
 	height: 500px;
   	background-position: center;
   	background-repeat: no-repeat;
   	background-size: cover;
   	position: relative;
-}
-.homebg-image{
+} */
+/* .homebg-image{
 	background-image: url("../images/drought-water-conservation-and-irrigation-for-your-lawn-1080x720.jpg");
 	height: 500px;
   	background-position: center;
@@ -186,7 +187,7 @@ td.data-insert {
     background-size: cover;
     position: relative;
     display: inline-block;
-}
+} */
 .banner-content{
 	background-color: #204001fc;
     height: 250px;
@@ -199,7 +200,7 @@ td.data-insert {
 	color: white;
 	opacity: 0.7;
 }
-.digicrop-logo{
+/* .digicrop-logo{
 	background-image: url("../images/Logo.png");
 	background-position: center;
     background-repeat: no-repeat;
@@ -211,7 +212,7 @@ td.data-insert {
     height: 115px;
     background-color: #fff;
     border-radius: 70px;
-}
+} */
 .regbanner-content{
 	background-color: #204001fc;
     height: 250px;
@@ -275,14 +276,14 @@ td.data-insert {
     opacity: 0.7;
     left: 32.7%;
 }
-.hand-img{
+/* .hand-img{
 	background-image: url("../images/Hand.png");
 	height: 500px;
     width: 480px;
     background-repeat: no-repeat;
     background-size: cover;
     transform: translate(-110%, -25%);
-}
+} */
 .homecontent{
 	margin: 15px 45px;
 	text-align: left;
@@ -301,10 +302,7 @@ td.data-insert {
 .MuiToolbar-root.MuiToolbar-regular.MuiToolbar-gutters {
     z-index: 1;
 }
-.MuiTableCell-root{
-	border-bottom: 0px !important;
-	width: 80%;
-}
+
 .MuiButton-label{
 	color: #fff !important;
 	border: 1px solid #2d70d8;
@@ -337,10 +335,10 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined {
     padding: 10px 30px;
 }
 
-.MuiPaper-root{
+/* .MuiPaper-root{
 	background-color: transparent !important;
 	transition: unset !important;
-}
+} */
 .MuiPaper-rounded{
 	border-radius: 0px !important;
 }
@@ -348,7 +346,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined {
 	box-shadow: 0px 0px 0px 0px !important;
 	text-align: right;
 }
-.img-1{
+/* .img-1{
 	background-image: url("../images/DigiCorp-img1.jpg");
 	height: 350px;
     width: 100%;
@@ -449,7 +447,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined {
 	background-repeat: no-repeat;
 	background-size: cover;
 	margin: auto;
-}
+} */
 .makeStyles-paper-11{
 	padding: 0px !important;
 	text-align: left !important;
@@ -726,4 +724,171 @@ min-height: 50px;
 }
 .menu-bar ul li:hover .sub-menu-1:hover{
 	background-color: #034e9f;
+}
+.MuiAppBar-colorPrimary {
+    color: #fff;
+    background-color: #3f51b5 !important;
+}
+.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
+    background-color: #3f51b5 !important;
+    color: #fff;
+    top: 40px !important;
+    left: 1120px !important;
+}
+.cloudschoolfooter {
+    background-color: #3f51b5 !important;
+    color: #fff;
+    height: 45px;
+    text-align: end;
+    padding: 8px;
+    left: 0;
+    bottom: 0;
+    margin-top: 51vh;
+}
+/*data area*/
+a#backButtonIndex {
+    border: 1px solid #000;
+	border-radius: 25px;
+	padding: 3px 5px;
+}
+.toolbar-button {
+    background-color: #f7f7f7 !important;
+	border: 1px solid #c1c1c1;
+    color: #000 !important;
+    padding: 0px 15px;
+	margin: 0px -15px;
+}
+.toolbar-heading.margin-top-5 {
+    padding: 6px;
+    border: 1px solid #000;
+	margin: 15px;
+	background-color:  #e7eaec;
+}
+.row{
+	margin-right: 0px !important;
+	margin-left: 0px !important;
+}
+.MuiFormControlLabel-root {
+    cursor: pointer;
+    display: inline-flex !important;
+    align-items: center !important;
+    margin-left: -10px !important;
+    margin-right: 3px !important;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+}
+.PrivateSwitchBase-root-11 {
+    padding: 12px 3px;
+}
+.PrivateSwitchBase-root-10 {
+    padding: 9px 5px 9px 10px;
+}
+button#dropdown-basic {
+    background-color: white;
+    color: #000;
+    border: 1px solid#ced4da;
+    width: 100%;
+    text-align: left;
+}
+.dropdown-toggle::after {
+    /*display: inline-block;*/
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+    float: right;
+    margin-top: 10px;
+}
+label + .MuiInput-formControl {
+    margin-top: 32px !important;
+}
+label#date-label {
+    margin: 3px 0px !important;
+    font-size: 21px;
+}
+input#date {
+    width: 227px;
+    height: auto;
+    border-radius: 3px;
+    padding: 6px 0px 6px 5px;
+}
+fieldset.scheduler-border {
+    border: 1px dotted #ddd !important;
+    padding: 0 1em 0.5em 1em !important;
+    margin: 0 0 0.5em 0 !important;
+    -webkit-box-shadow: 0 0 0 0 #676a6c;
+    box-shadow: 0 0 0 0 #676a6c;
+    background-color: #f5f7f9;
+    border-radius: 4px;
+}
+legend.scheduler-border {
+    font-size: 12px !important;
+    font-weight: normal !important;
+    color: #676a6c;
+    width: inherit;
+    padding: 0 5px 5px 5px;
+    border-bottom: none;
+    margin-bottom: -4px;
+}
+.profile-head{
+    background-color: #ffffff !important;
+    border: 1px solid #F5F0F0;
+    height: 95%;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0px 15px;
+}
+.DivSectionTitle {
+    margin-bottom: 50px;
+}
+button#submit:hover {
+    background-color: green;
+    color: #fff;
+    margin: 5px 10px;
+    padding: 5px 5px;
+}
+button#submit {
+    margin: 5px 10px;
+    padding: 5px 5px;
+}
+#submit svg.MuiSvgIcon-root {
+    font-size: 16px;
+    margin: 0px 3px;
+}
+.table .thead-light th {
+    color: #000000;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    border: 1px solid #000;
+}
+button#create:hover {
+    background-color: blue;
+    color: #fff;
+}
+.makeStyles-content-9{
+    padding: 0px !important;
+}
+.container-fluid{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.btn {
+    margin: 0px 5px 0px 0px;
+}
+#existing:hover{
+    background-color: #1ab394;
+    color: #fff;
+}
+button.searchbtn {
+    padding: 5px 15px;
+    background-color: transparent;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin-top: 29px;
+    float: right;
+}
+button.searchbtn:hover {
+    background-color: #1ab394;
+    color: #fff;
 }

@@ -1,0 +1,85 @@
+.DivMenu
+{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    background-color: #003263;
+    font-size: 14px;
+    border-radius: 0px;
+    height: 550px;
+    
+}
+.DivMenu ul
+{
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    font-weight: bolder;
+    color: white;
+    width: 100%;
+    
+}
+.DivMenu ul li{
+
+    
+    padding: 5px;
+}
+.DivMenu ul li div:first-child
+{
+
+    border-bottom: white solid 1px;
+    padding: 0px;
+    width: 100%;
+}
+.DivMenu ul li div:first-child span
+{
+
+    padding-right: 10px;
+    
+}
+.DivSubMenu
+{
+    margin: 0px;
+    padding: 0px;
+    display: none;
+}
+
+.DivMenu ul li:hover .DivSubMenu
+{
+    display: block;    
+    
+}
+
+.DivSubMenu ul
+{
+    list-style-type: none;
+    font-weight:bold;
+    color: lightsteelblue;
+
+}
+.DivSubMenu ul li{
+
+    border-bottom: black solid 0px;
+    padding: 3px;
+    margin-left: 10px;
+}
+.DivSubMenu ul li:hover
+{
+
+    background-color: darkgreen;
+}
+.DivSubMenu ul li a{
+
+    text-decoration: none;
+    color: lightblue;
+    cursor: hand;
+    
+}
+.DivSubMenu ul li a:hover
+{
+
+    color: white;
+    font-weight: bolder;
+}

@@ -332,12 +332,9 @@
 }
 .DivErrorMessage
 {
-  text-align: center;
-	font-family:  Verdana, Geneva, Tahoma, sans-serif;
-  font-size: small;
-  font-weight: bolder;
+  font-size: 11px;
   color:red;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   
 }
 .GridSection
