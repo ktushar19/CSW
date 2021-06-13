@@ -49,6 +49,7 @@ class StaffDetails extends Component{
         }
         this.HandleChange = this.HandleChange.bind(this)        
         this.DeleteStaff = this.DeleteStaff.bind(this)
+        this.fnSearch = this.fnSearch.bind(this)
         //this.findbyuserById = this.findbyuserById.bind(this);
     }
 //need commn filed
@@ -64,6 +65,10 @@ class StaffDetails extends Component{
    
 
     componentDidMount(){
+        this.fnSearch();
+    }
+
+    fnSearch=(e)=>{
         axios.get('http://localhost:4000/app/Staff')
         .then(response => {
             console.log('inside');
@@ -75,6 +80,7 @@ class StaffDetails extends Component{
             console.log(error);
         })
     }
+    
 
     // findbyuserById=()=>{
     //     const id = this.state._id 
@@ -93,12 +99,23 @@ class StaffDetails extends Component{
 
 DeleteStaff=(id)=>{
     console.log(id);
-    axios.delete(`http://localhost:4000/app/Staff/${id}`)
-        .then(response => console.log(response));
-        //window.location('/StaffDetails');
-        // this.setState({
-        //     staffdata: this.state.staffdata.filter(el=>el._id !== id)
-        // })
+    alert("Are you sure you want to delete?");
+    let bConfirm = true;
+    if(bConfirm)
+    {
+        axios.delete('http://localhost:4000/app/Staff/'+id)
+        .then(response => 
+        {
+            console.log(response);
+            this.fnSearch();
+        }
+
+        );
+
+    }
+    
+    
+    
 }
 
 
@@ -222,7 +239,7 @@ DeleteStaff=(id)=>{
                                       <Table class="table">
                                             <TableHead class="thead-light">
                                                 <TableRow>
-                                                    <TableCell>id</TableCell>
+                                                    <TableCell>Id</TableCell>
                                                     <TableCell>First Name</TableCell>
                                                     <TableCell>Middle Name</TableCell>
                                                     <TableCell>Last Name</TableCell>

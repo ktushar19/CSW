@@ -46,6 +46,7 @@ class Staff extends Component{
     {
         super(props);        
         this.state = {
+            id:"",
             firstName: '',
             middleName: '',
             lastName: '',
@@ -60,7 +61,7 @@ class Staff extends Component{
         this.onSubmit = this.onSubmit.bind(this);
        this.validate = this.validate.bind(this);
        this.fnShowError = this.fnShowError.bind(this);
-        this.fnUpdate = this.fnUpdate.bind(this);
+        this.fnFetchData = this.fnFetchData.bind(this);
     }
 
     fnShowError(Error)
@@ -116,7 +117,9 @@ class Staff extends Component{
 //need commn filed
     HandleChange= (e) =>
     {
+        
         e.preventDefault();    
+        
         console.log(e.target.name);
         console.log(e.target.value);
         this.setState(
@@ -128,7 +131,8 @@ class Staff extends Component{
     }
 
     componentDidMount(){
-        this.fnUpdate();
+        this.fnFetchData();
+        /*
         axios.get('http://localhost:4000/app/Staff',)
         .then(response => {
             if(response.data.length > 0) {
@@ -140,6 +144,7 @@ class Staff extends Component{
         .catch((error) =>{
             console.log(error);
         })
+        */
         
     }
 
@@ -153,6 +158,7 @@ class Staff extends Component{
         }
     else{
         const registered = {
+            
             firstName: this.state.firstName,
             middleName: this.state.middleName,
             lastName: this.state.lastName,
@@ -179,9 +185,10 @@ class Staff extends Component{
         })        
     }   
 }
-fnUpdate=(e)=>{
+fnFetchData=(e)=>{
    //this.setState({[e.target.name]:e.target.value});
        console.log("Inside update");
+       //alert(this.props.match.params.id);
        const registered = {
         firstName: this.state.firstName,
         middleName: this.state.middleName,
@@ -190,9 +197,24 @@ fnUpdate=(e)=>{
         userName: this.state.userName,
         password: this.state.password
     }
-       axios.put('http://localhost:4000/app/Staff/'+this.props.match.params.id, {registered})
+
+    //6072ec7a5e92fe2f08572b9d
+       //axios.put('http://localhost:4000/app/Staff/'+this.props.match.params.id, {registered})
+       //axios.put('http://localhost:4000/app/Staff/6072ec7a5e92fe2f08572b9d', {registered})
+
+       axios.get('http://localhost:4000/app/Staff/'+this.props.match.params.id, registered)
        .then(response => {
         console.log("fetchStaff data"+ response.data)
+        
+        this.setState({staffdata:response.data})
+        //alert(response.data["firstName"]);
+        
+        this.setState({firstName:response.data["firstName"]});
+        this.setState({middleName:response.data["middleName"]});
+        this.setState({lastName:response.data["lastName"]});
+        this.setState({email:response.data["email"]});
+        
+        
        })    
 }   
 
@@ -248,7 +270,7 @@ fnUpdate=(e)=>{
                             <label for="exampleInputFirstName">First Name<span class="required">*</span></label>
                             <input type='text' name="firstName" class="form-control" id="idfirstName" placeholder="" 
                                             value={this.state.firstName}
-                                            onChange={(e)=>this.HandleChange} noValidate 
+                                            onChange={this.HandleChange}  
                                                 />
                              {this.state.firstNameError ?
                                                 <div class="DivErrorMessage">{this.state.firstNameError}</div> :null}
@@ -258,7 +280,7 @@ fnUpdate=(e)=>{
                         <div class="form-group">
                             <label for="exampleInputLastName">Last Name<span class="required">*</span></label>
                             <input type='text' name="lastName" class="form-control" id="exampleInputLastName" placeholder="" value={this.state.lastName}
-                                            onChange={(e)=>this.HandleChange}/>
+                                            onChange={this.HandleChange}/>
                                             {this.state.lastNameError ?
                                                 <div class="DivErrorMessage">{this.state.lastNameError}</div> :null}
                         </div>
@@ -269,7 +291,7 @@ fnUpdate=(e)=>{
                         <div class="form-group">
                             <label for="exampleInputmiddlename">Middle Name<span class="required">*</span></label>
                             <input type="text" class="form-control" name="middleName" id="exampleInputmiddlename" placeholder="" value={this.state.middleName}
-                                            onChange={(e)=>this.HandleChange}/>
+                                            onChange={this.HandleChange}/>
                             {this.state.middleNameError ?
                                                 <div class="DivErrorMessage">{this.state.middleNameError}</div> :null} 
                                </div>
@@ -404,7 +426,7 @@ fnUpdate=(e)=>{
                                         <input type="text" class="form-control"  name="userName" aria-label="Recipient's username" aria-describedby="basic-addon2" 
                                             id='idUserName'
                                             value={this.state.userName}
-                                            onChange={(e)=>this.HandleChange}/>
+                                            onChange={this.HandleChange}/>
                                         {/* <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon2">@example.com</span>
                                         </div> */}                                         
@@ -417,7 +439,7 @@ fnUpdate=(e)=>{
                                         <label for="exampleInputemail">Email<span class="required">*</span></label>
                                         <input class="form-control" name="email" id="exampleInputemail" placeholder=""  type='text'
                                             value={this.state.email}
-                                            onChange={(e)=>this.HandleChange} noValidate/>
+                                            onChange={this.HandleChange} noValidate/>
                                             {this.state.emailError ?
                                                 <div class="DivErrorMessage">{this.state.emailError}</div> :null}
                                     </div>
@@ -431,7 +453,7 @@ fnUpdate=(e)=>{
                                             placeholder= 'Password'
                                             id='idpassword'
                                             value={this.state.password}
-                                            onChange={(e)=>this.HandleChange}
+                                            onChange={this.HandleChange}
                                             className='form-control'
                                             noValidate
                                         />

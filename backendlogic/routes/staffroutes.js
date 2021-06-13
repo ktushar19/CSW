@@ -43,10 +43,13 @@ staffRouter.get('/Staff', async (request, response) =>{
 
 //Find By ID
 staffRouter.get('/Staff/:id', async (request, response) =>{
-    if(request.query.id){
-        const id = request.query.id;
+    if(request.params.id){
+        const id = request.params.id;
         //console.log(id);
-        staffModel.findById(id)
+        
+        //staffModel.findById("60c4e19e89af182900ccd7bf")
+        //staffModel.findOne({ firstName: "Tushar" })
+        staffModel.findById(request.params.id)
         .then(data =>{
             if(!data){
                 response.this.status(404).send({message:'Not found user with ${id}!'})
@@ -59,7 +62,10 @@ staffRouter.get('/Staff/:id', async (request, response) =>{
         })
     }
     else{
-        staffModel.find()
+        //staffModel.find()
+        
+        response.this.status(500).send({message:'Bad Request'})
+        //staffModel.findById()
     .then(data =>{
         response.json(data)
     })
@@ -97,8 +103,8 @@ staffRouter.put('/Staff/:id', async (request, response) => {
 //Delete
 staffRouter.delete('/Staff/:id', async (request, response) => {
     const id = request.params.id;
-    //console.log(id);
-    staffModel.findByIdAndUpdate(id)
+    console.log(id);
+    staffModel.findByIdAndDelete(id)
     .then(data =>{
         if(!data){
             response.this.status(404).send({message:'Cannot delete user with ${id}. Maybe user id is wrong!'})

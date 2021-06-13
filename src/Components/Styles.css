@@ -858,9 +858,11 @@ button#submit {
 }
 .table .thead-light th {
     color: #000000;
-    background-color: #e9ecef;
+    background-color: teal;
     border-color: #dee2e6;
     border: 1px solid #000;
+    font-weight: bold;
+    text-align: center;
 }
 button#create:hover {
     background-color: blue;

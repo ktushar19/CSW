@@ -1,4 +1,4 @@
-DELETE  http://localhost:4000/app/Staff/6084227fd1cd6e44ecd7521f
+GET  http://localhost:4000/app/Staff/60c4e19e89af182900ccd7bf
 Content-Type: application/json
 
 {    

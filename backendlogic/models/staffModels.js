@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 //autoIncrement = require('mongoose-auto-increment');
 
 const staffSchema = new Schema({
+    
     firstName:{
         type:String,
         required:true
