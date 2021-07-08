@@ -1,0 +1,3 @@
+[submodule "scp-auth-service-api"]
+	path = scp-auth-service-api
+	url = https://github.com/ktushar19Git/scp-auth-service-api
