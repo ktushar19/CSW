@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import '../../App.css';
 
 import TextField from "@material-ui/core/TextField";
 import { colors, Container } from '@material-ui/core'
 import Button from '@material-ui/core/Button';
-
+import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider'
 
@@ -12,90 +12,147 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-class Register extends Component{
+class Register extends Component {
 
-    constructor(props)
-    {
+    constructor(props) {
         super(props);
-        //this.fnCreateAccount = this.fnCreateAccount.bind(this);
+        this.fnCreateAccount = this.fnCreateAccount.bind(this);
         this.HandleChange = this.HandleChange.bind(this);
         this.fnShowError = this.fnShowError.bind(this);
-        
+        this.fnValidateRegistrationForm = this.fnValidateRegistrationForm.bind(this);
         this.state = {
-            Email :"",
-            Password:"",
-            strErrMessage:"",
-            EmailError:"",
-            PasswordError:""
-
+            fields: {},
+            errors: {},
         }
     }
-    HandleChange(e)
-    {
-        this.setState(
-            {
-                [e.target.name] : e.target.value
+
+    fnCreateAccount(e) {
+        e.preventDefault()
+        if (this.fnValidateRegistrationForm()) {
+            let fields = {};
+            fields["FirstName"] = "";
+            fields["LastName"] = "";
+            fields["Email"] = "";
+            fields["Phone"] = "";
+            fields["Password"] = "";
+            this.setState({ fields: fields });
+            const signUpRequest = {
+                firstName: this.state.fields.FirstName,
+                lastName: this.state.fields.LastName,
+                emailAddress: this.state.fields.Email,
+                phoneNumber: this.state.fields.Phone,
+                password: this.state.fields.Password
             }
-        )
+            axios.post('http://localhost:8091/api/auth/signup', signUpRequest)
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
     }
 
-    fnShowError(Error)
-    {
+    HandleChange(e) {
+        let fields = this.state.fields;
+        fields[e.target.name] = e.target.value;
+        this.setState({
+            fields
+        });
+    }
+
+    fnShowError(Error) {
         this.state.strErrMessage = Error;
-                //this.ErrorBox.visible = true;     
+        this.ErrorBox.visible = true;
         document.getElementById("DivErrorContainer").style.display = "block";
 
-
-    }
-    fnValidate= () =>
-    {
-        
-        let EmailError= "";
-        let PasswordError = "";
-
-        if(this.state.Email=="")
-        {
-            EmailError = "Please enter Email"
-            this.setState({EmailError});
-        }
-        if(this.state.Password=="")
-        {
-            PasswordError = "Please enter Password"
-            this.setState({PasswordError});
-        }
-
-        if(EmailError+PasswordError);
-
-        if(EmailError !="" || PasswordError!="")
-        {
-            return false;
-        }
-        return true;
-
     }
 
-    render(){
-        return(
+    fnValidateRegistrationForm = () => {
+        let fields = this.state.fields;
+        let errors = {};
+        let formIsValid = true;
+
+        if (!fields["FirstName"]) {
+            formIsValid = false;
+            errors["FirstName"] = "*Please enter your firstname.";
+        }
+
+        if (typeof fields["FirstName"] !== "undefined") {
+            if (!fields["FirstName"].match(/^[a-zA-Z ]*$/)) {
+                formIsValid = false;
+                errors["FirstName"] = "*Please enter alphabet characters only.";
+            }
+        }
+
+        if (!fields["Email"]) {
+            formIsValid = false;
+            errors["Email"] = "*Please enter your email-ID.";
+        }
+
+        if (typeof fields["Email"] !== "undefined") {
+            var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+            if (!pattern.test(fields["Email"])) {
+                formIsValid = false;
+                errors["Email"] = "*Please enter valid email-ID.";
+            }
+        }
+
+        if (!fields["Phone"]) {
+            formIsValid = false;
+            errors["Phone"] = "*Please enter your phone no.";
+        }
+
+        if (typeof fields["Phone"] !== "undefined") {
+            if (!fields["Phone"].match(/^[0-9]{10}$/)) {
+                formIsValid = false;
+                errors["Phone"] = "*Please enter valid phone no.";
+            }
+        }
+
+        if (!fields["Password"]) {
+            formIsValid = false;
+            errors["Password"] = "*Please enter your password.";
+        }
+
+        if (typeof fields["Password"] !== "undefined") {
+            if (!fields["Password"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
+                formIsValid = false;
+                errors["Password"] = "*Please enter secure and strong password.";
+            }
+        }
+
+        this.setState({
+            errors: errors
+        });
+        return formIsValid;
+
+    }
+
+
+
+    render() {
+        return (
             <div>
                 <table class="FullTable">
                     <tr>
                         <td class="LoginHalfTd1">
-                            
-                                <div class='HeaderSection'>Cloud School Features
-                                </div>
-                                <div class='HeaderSection1'>
-                                    <ul>
-                                        <li>Teacher Maintenance</li>
-                                        <li>Student Maintenance</li>
-                                        <li>Teacher-Parent Interaction</li>
-                                        <li>world class reporting</li>
-                                    </ul>
-                                </div>
-                            
-                            
+
+                            <div class='HeaderSection'>Cloud School Features
+                            </div>
+                            <div class='HeaderSection1'>
+                                <ul>
+                                    <li>Teacher Maintenance</li>
+                                    <li>Student Maintenance</li>
+                                    <li>Teacher-Parent Interaction</li>
+                                    <li>world class reporting</li>
+                                </ul>
+                            </div>
+
+
                         </td>
                         <td class="LoginHalfTd2">
-                            
+
                             <div class="DivMarginLoginDetails">
                                 <React.Fragment>
                                     <h1>
@@ -111,13 +168,14 @@ class Register extends Component{
                                                 <div class='MarginNormal'>
                                                     <TextField
                                                         label="First Name"
-                                                        variant= "outlined"
+                                                        variant="outlined"
                                                         id='idFirstName'
-                                                        value={this.state.FirstName}
+                                                        value={this.state.fields.FirstName}
                                                         onChange={this.HandleChange}
                                                         name="FirstName"
                                                         helperText="First Name"
                                                     />
+                                                    <div class="DivErrorMessage">{this.state.errors.FirstName}</div>
                                                 </div>
                                                 <div class='MarginNormal'>
                                                     <TextField
@@ -125,21 +183,21 @@ class Register extends Component{
                                                         variant="outlined"
                                                         id='idLastName'
                                                         name="LastName"
-                                                        value={this.state.LastName}
+                                                        value={this.state.fields.LastName}
                                                         onChange={this.HandleChange}
                                                     />
+                                                    <div class="DivErrorMessage">{this.state.errors.LastName}</div>
                                                 </div>
                                                 <div class='MarginNormal'>
                                                     <TextField
                                                         label="Email Address"
                                                         variant="outlined"
                                                         id='idEmail'
-                                                        value={this.state.Email}
+                                                        value={this.state.fields.Email}
                                                         onChange={this.HandleChange}
                                                         name="Email"
                                                     />
-                                                    {this.state.EmailError ?
-                                                        <div class="DivErrorMessage">{this.state.EmailError}</div> : null}
+                                                    <div class="DivErrorMessage">{this.state.errors.Email}</div>
 
                                                 </div>
                                                 <div class='MarginNormal'>
@@ -147,10 +205,11 @@ class Register extends Component{
                                                         label="Phone Number"
                                                         variant="outlined"
                                                         id='idPhone'
-                                                        value={this.state.Phone}
+                                                        value={this.state.fields.Phone}
                                                         onChange={this.HandleChange}
                                                         name="Phone"
                                                     />
+                                                    <div class="DivErrorMessage">{this.state.errors.Phone}</div>
                                                 </div>
                                                 <div class='MarginNormal'>
                                                     <TextField
@@ -158,11 +217,11 @@ class Register extends Component{
                                                         type="password"
                                                         variant="outlined"
                                                         id='idPassword'
-                                                        value={this.state.Password}
+                                                        value={this.state.fields.Password}
                                                         onChange={this.HandleChange}
                                                         name="Password"
                                                     />
-                                                    {this.state.EmailError ? <div class="DivErrorMessage">{this.state.PasswordError}</div> : null}
+                                                    <div class="DivErrorMessage">{this.state.errors.Password}</div>
                                                 </div>
                                                 <Divider></Divider>
                                                 <div class='MarginNormal'>
@@ -181,7 +240,7 @@ class Register extends Component{
 
                                                     >
                                                         <ExitToAppIcon></ExitToAppIcon>Register
-            </Button>
+                                                    </Button>
                                                 </div>
                                                 <Divider></Divider>
                                                 <div class='LoginAccountExists'>
@@ -194,7 +253,7 @@ class Register extends Component{
                                     </h1>
                                 </React.Fragment>
                             </div>
-                            
+
                         </td>
                     </tr>
                 </table>

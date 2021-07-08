@@ -1,27 +1,14 @@
-import { colors } from '@material-ui/core'
-import React,{Component} from 'react'
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import React, { Component } from 'react'
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/core/styles';
 import { RadioButtonUncheckedSharp } from '@material-ui/icons';
 import { Table } from '@material-ui/core';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-
+import axios from 'axios';
 import DoneIcon from '@material-ui/icons/Done';
-
-
-
 import TextField from "@material-ui/core/TextField";
-
-import firebase from '../../services/firebase';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
@@ -40,202 +27,199 @@ const useStyles = makeStyles((theme) => ({
 
 class LoginPage extends Component {
 
-    constructor(props)
-    {
+    constructor(props) {
         super(props);
         this.fnLogin = this.fnLogin.bind(this);
         this.HandleChange = this.HandleChange.bind(this);
+        this.fnLogin = this.fnLogin.bind(this);
+        this.fnValidateLoginForm = this.fnValidateLoginForm.bind(this);
         this.state = {
-            Email :"",
-            Password:""
+            fields: {},
+            errors: {},
         }
     }
-    HandleChange(e)
-    {
-        this.setState(
-            {
-                [e.target.name] : e.target.value
+    HandleChange(e) {
+        let fields = this.state.fields;
+        fields[e.target.name] = e.target.value;
+        this.setState({
+            fields
+        });
+    }
+
+
+
+    fnLogin = (e) => {
+        e.preventDefault();
+        if (this.fnValidateLoginForm()) {
+            let fields = {};
+            fields["Email"] = "";
+            fields["Password"] = "";
+            this.setState({ fields: fields });
+
+            const signInRequest = {
+                userName: this.state.fields.Email,
+                password: this.state.fields.Password
             }
-        )
+
+            axios.post('http://localhost:8091/api/auth/signin', signInRequest)
+                .then(response => {
+                    console.log(response.data);  
+                    window.location = "/StaffDetails";                  
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
     }
-    
 
-    
-    fnLogin() 
-    {
-        
-       try
-       {
-           //alert(this.state.Email)
+    fnValidateLoginForm = () => {
 
-           let strErr = "";   
-        if(this.state.Email=="")
-        {
-            strErr = strErr + "Please enter Email Address\n";   
-
-        }
-        if(this.state.Password=="")
-        {
-            strErr = strErr + "Please enter Password\n";   
-
-        }
-        
-        if(strErr!="")
-        {
-            alert(strErr);
-        }
-        else
-        {
-            firebase.auth().signInWithEmailAndPassword(this.state.Email,this.state.Password).then((user) => {
-                // Signed in 
-                // ...
-                
-                //alert(firebase.auth().currentUser.uid);
-                localStorage.setItem("g_user_id", firebase.auth().currentUser.uid);
-                //history.push("/SubmitData");
-                alert("You are logged in. Please Click on SubmitData to proceed.");
+        let fields = this.state.fields;
+        let errors = {};
+        let formIsValid = true;
 
 
-                //alert(user.credential.name);
-              })
-                .catch(function(error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                if (errorCode === 'auth/wrong-password') {
-                    alert('Wrong password.');
-                } else {
-                    alert(errorMessage);
-                }
-                console.log(error);
-                });
-
-        }
-       }
-       catch (error) 
-       {
-        alert(error.message);
+        if (!fields["Email"]) {
+            formIsValid = false;
+            errors["Email"] = "*Please enter your email-ID.";
         }
 
-      }
+        if (typeof fields["Email"] !== "undefined") {
+            var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+            if (!pattern.test(fields["Email"])) {
+                formIsValid = false;
+                errors["Email"] = "*Please enter valid email-ID.";
+            }
+        }
 
-    render()
-    {
-    return(
+        if (!fields["Password"]) {
+            formIsValid = false;
+            errors["Password"] = "*Please enter your password.";
+        }
 
-        <div  >
+        if (typeof fields["Password"] !== "undefined") {
+            if (!fields["Password"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
+                formIsValid = false;
+                errors["Password"] = "*Please enter secure and strong password.";
+            }
+        }
 
-            <div class="divMainCurve">
-            <Table>
-                    <TableBody>
-            <TableRow>
-                            <TableCell >
-                                <div class="DivMarginHeader">
-                                    
+        this.setState({
+            errors: errors
+        });
+        return formIsValid;
 
-                                </div>
-                            </TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell >
-                                <div class="DivMarginHeader">
-                                    
+    }
 
-                                </div>
-                            </TableCell>
-                        </TableRow> 
-                        <TableRow>
-                            <TableCell>
-                                <div class="banner-title">
-                                    <h1>Farmer by</h1>
-                                    <h1 class="titlebg-color">NATURE</h1>
-                                </div>
-                            <div class="regbg-image"></div>
-                                <div class="DivMarginSignUp">
-                                <div class="DivMarginLoginAccount">                                    
-                                        <div class='HeaderSection'>Login to your account</div>
-                                        <div class="divider"></div>
+    render() {
+        return (
+
+            <div  >
+
+                <div class="divMainCurve">
+                    <Table>
+                        <TableBody>
+                            <TableRow>
+                                <TableCell >
+                                    <div class="DivMarginHeader">
+
+
+                                    </div>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell >
+                                    <div class="DivMarginHeader">
+
+
+                                    </div>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>
+                                    <div class="banner-title">
+                                        <h1>Farmer by</h1>
+                                        <h1 class="titlebg-color">NATURE</h1>
+                                    </div>
+                                    <div class="regbg-image"></div>
+                                    <div class="DivMarginSignUp">
+                                        <div class="DivMarginLoginAccount">
+                                            <div class='HeaderSection'>Login to your account</div>
+                                            <div class="divider"></div>
                                             <div class='DetailsSection'>
                                                 <TextField
                                                     label="Email Address"
                                                     id="idEmail"
                                                     variant="outlined"
-                                                    name = "Email"
-                                                    value = {this.state.Email}
+                                                    name="Email"
+                                                    value={this.state.fields.Email}
                                                     onChange={this.HandleChange}
                                                 />
-                                                <TextField
-                                                    label="Phone Number"   
-                                                    id="idPhone"                                                 
-                                                    variant="outlined"
-                                                    name = "Phone"
-                                                    type=""
-                                                    value = {this.state.Phone}
-                                                    onChange={this.HandleChange}
-                                                />
+                                                <div class="DivErrorMessage">{this.state.errors.Email}</div>
+
                                                 <TextField
                                                     label="Password"
                                                     id="idPassword"
-                                                    type="password"        
+                                                    type="password"
                                                     variant="outlined"
-                                                    name = "Password"
-                                                    value = {this.state.Password}
+                                                    name="Password"
+                                                    value={this.state.fields.Password}
                                                     onChange={this.HandleChange}
                                                 />
-                                               
-                                               
+                                                <div class="DivErrorMessage">{this.state.errors.Password}</div>
+
                                                 <Button
-                                        variant="outlined"
-                                        style={{
-                                            color: "black",
-                                            height: "50px",
-                                            backgroundColor: "goldenrod",
-                                            fontWeight: "bolder",
-                                            marginBottom: "10px",
-                                        }}
-                                        onClick={this.fnLogin}
+                                                    variant="outlined"
+                                                    style={{
+                                                        color: "black",
+                                                        height: "50px",
+                                                        backgroundColor: "goldenrod",
+                                                        fontWeight: "bolder",
+                                                        marginBottom: "10px",
+                                                    }}
+                                                    onClick={this.fnLogin}
 
-                                    >
-                                        <DoneIcon></DoneIcon>Login
-            </Button>
-                                                </div> 
+                                                >
+                                                    <DoneIcon></DoneIcon>Login
+                                                </Button>
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    
-                                </div>
-                            </TableCell>                            
-                        </TableRow>
-                        <Grid container>
-        <Grid item xs={6} style={{padding: "155px 15px 30px 70px"}}>
-          <Paper>
-          <div class="regimg-3"></div>
-            <div class="address">
-                <h3>Address</h3>
-                <h4>DigiCrop Agriculture Solutions Pvt. Ltd.</h4>
-                <h4>+91 8867498767 | +91 9148705605</h4>
-                <h4><a href="mailto:sales@digi-crop.com">sales@digi-crop.com</a></h4>
-            </div>
-          </Paper>
-        </Grid>
-        <Grid item xs={6} style={{padding: "30px 70px 30px 0px"}}>
-          <Paper>
-          <div class="regimg-2"></div>
-          </Paper>
-        </Grid>
-      </Grid>
-                        <TableRow>
-                            <TableCell >
-                                <div class="DivMarginFooter">
-                                    
+                                </TableCell>
+                            </TableRow>
+                            <Grid container>
+                                <Grid item xs={6} style={{ padding: "155px 15px 30px 70px" }}>
+                                    <Paper>
+                                        <div class="regimg-3"></div>
+                                        <div class="address">
+                                            <h3>Address</h3>
+                                            <h4>DigiCrop Agriculture Solutions Pvt. Ltd.</h4>
+                                            <h4>+91 8867498767 | +91 9148705605</h4>
+                                            <h4><a href="mailto:sales@digi-crop.com">sales@digi-crop.com</a></h4>
+                                        </div>
+                                    </Paper>
+                                </Grid>
+                                <Grid item xs={6} style={{ padding: "30px 70px 30px 0px" }}>
+                                    <Paper>
+                                        <div class="regimg-2"></div>
+                                    </Paper>
+                                </Grid>
+                            </Grid>
+                            <TableRow>
+                                <TableCell >
+                                    <div class="DivMarginFooter">
 
-                                </div>
-                            </TableCell>
-                        </TableRow>
-                    </TableBody>
-                </Table>
+
+                                    </div>
+                                </TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </div>
             </div>
-        </div>
-    );
-}
+        );
+    }
 
 }
 export default LoginPage
