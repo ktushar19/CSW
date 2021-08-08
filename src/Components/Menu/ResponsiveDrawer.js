@@ -18,6 +18,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MasterMenu from './MasterMenu';
+import PersonIcon from '@material-ui/icons/Person';
+import { Link } from 'react-router-dom';
+import { Dropdown } from 'react-bootstrap';
+
 
 const drawerWidth = 240;
 
@@ -48,6 +52,13 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+  },
+  personIconAlignment: {
+    'margin-inline': '1000px'
+  },
+  loginMessage: {
+    'font-size': '13px',
+    'margin-inline': '1000px'
   },
   drawerPaper: {
     width: drawerWidth,
@@ -110,8 +121,25 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            CloudSchool
+          <div className="dropdown">
+            <Dropdown>
+              <Dropdown.Toggle
+                variant="secondary btn-sm"
+                id="dropdown-basic">
+                Menu
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu style={{ backgroundColor: '#73a47' }}>
+                <Dropdown.Item href="/Logout">Logout</Dropdown.Item>
+                <Dropdown.Item href="#">Profile</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+          <Typography noWrap>
+            <div className={clsx(classes.personIconAlignment)}>
+            <PersonIcon ></PersonIcon> 
+            </div>
+            <div className={clsx(classes.loginMessage)}>Welcome {localStorage.getItem("userName")}</div>
           </Typography>
         </Toolbar>
       </AppBar>
@@ -130,8 +158,8 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </div>
         <Divider />
-        
-       <MasterMenu></MasterMenu>
+
+        <MasterMenu></MasterMenu>
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -139,9 +167,9 @@ export default function PersistentDrawerLeft() {
         })}
       >
         <div className={classes.drawerHeader} />
-        
-      </main>      
+
+      </main>
     </div>
-    
+
   );
 }

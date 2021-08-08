@@ -38,14 +38,15 @@ class Register extends Component {
             this.setState({ fields: fields });
             const signUpRequest = {
                 firstName: this.state.fields.FirstName,
-                lastName: this.state.fields.LastName,
+               // lastName: this.state.fields.LastName,
                 emailAddress: this.state.fields.Email,
-                phoneNumber: this.state.fields.Phone,
-                password: this.state.fields.Password
+               // phoneNumber: this.state.fields.Phone,
+                password: this.state.fields.Password,
+                instituteName: this.state.fields.InstituteName
             }
             axios.post('http://localhost:8091/api/auth/signup', signUpRequest)
                 .then(response => {
-                    console.log(response.data);
+                    alert(JSON.stringify(response.data))
                 })
                 .catch((error) => {
                     console.log(error);
@@ -85,6 +86,19 @@ class Register extends Component {
             }
         }
 
+        if (!fields["InstituteName"]) {
+            formIsValid = false;
+            errors["InstituteName"] = "*Please enter your institute name.";
+        }
+
+        if (typeof fields["InstituteName"] !== "undefined") {
+            if (!fields["InstituteName"].match(/^[a-zA-Z ]*$/)) {
+                formIsValid = false;
+                errors["InstituteName"] = "*Please enter alphabet characters only.";
+            }
+        }
+
+
         if (!fields["Email"]) {
             formIsValid = false;
             errors["Email"] = "*Please enter your email-ID.";
@@ -98,7 +112,7 @@ class Register extends Component {
             }
         }
 
-        if (!fields["Phone"]) {
+       /* if (!fields["Phone"]) {
             formIsValid = false;
             errors["Phone"] = "*Please enter your phone no.";
         }
@@ -108,7 +122,7 @@ class Register extends Component {
                 formIsValid = false;
                 errors["Phone"] = "*Please enter valid phone no.";
             }
-        }
+        }*/
 
         if (!fields["Password"]) {
             formIsValid = false;
@@ -173,11 +187,10 @@ class Register extends Component {
                                                         value={this.state.fields.FirstName}
                                                         onChange={this.HandleChange}
                                                         name="FirstName"
-                                                        helperText="First Name"
                                                     />
                                                     <div class="DivErrorMessage">{this.state.errors.FirstName}</div>
                                                 </div>
-                                                <div class='MarginNormal'>
+                                               { /* <div class='MarginNormal'>
                                                     <TextField
                                                         label="Last name"
                                                         variant="outlined"
@@ -187,6 +200,17 @@ class Register extends Component {
                                                         onChange={this.HandleChange}
                                                     />
                                                     <div class="DivErrorMessage">{this.state.errors.LastName}</div>
+                                                </div> */}
+                                                <div class='MarginNormal'>
+                                                    <TextField fullWidth
+                                                        label="Institute Name"
+                                                        variant="outlined"
+                                                        id='idInstituteName'
+                                                        name="InstituteName"
+                                                        value={this.state.fields.InstituteName}
+                                                        onChange={this.HandleChange}
+                                                    />
+                                                    <div class="DivErrorMessage">{this.state.errors.InstituteName}</div>
                                                 </div>
                                                 <div class='MarginNormal'>
                                                     <TextField
@@ -200,7 +224,7 @@ class Register extends Component {
                                                     <div class="DivErrorMessage">{this.state.errors.Email}</div>
 
                                                 </div>
-                                                <div class='MarginNormal'>
+                                               { /* <div class='MarginNormal'>
                                                     <TextField
                                                         label="Phone Number"
                                                         variant="outlined"
@@ -210,7 +234,7 @@ class Register extends Component {
                                                         name="Phone"
                                                     />
                                                     <div class="DivErrorMessage">{this.state.errors.Phone}</div>
-                                                </div>
+                                            </div> */}
                                                 <div class='MarginNormal'>
                                                     <TextField
                                                         label="Password"

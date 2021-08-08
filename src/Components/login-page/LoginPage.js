@@ -63,10 +63,13 @@ class LoginPage extends Component {
 
             axios.post('http://localhost:8091/api/auth/signin', signInRequest)
                 .then(response => {
-                    console.log(response.data);  
-                    window.location = "/StaffDetails";                  
+                    console.log(response.data);
+                    localStorage.setItem("authorization",response.data.jwtToken);
+                    localStorage.setItem("userName",response.data.userName);
+                    window.location = "/Dashboard";
                 })
                 .catch((error) => {
+                    alert("User not yet activated/verified...") 
                     console.log(error);
                 })
         }
@@ -182,6 +185,12 @@ class LoginPage extends Component {
                                                 >
                                                     <DoneIcon></DoneIcon>Login
                                                 </Button>
+                                                <div class="Forgot Password">
+                                                     <a href='ForgotPassword'>Forgot Password?</a>
+                                                </div>
+                                                <div class="RegisterUser">
+                                                     <a href='Register'>Register Now!</a>
+                                                </div>
                                             </div>
                                         </div>
 
