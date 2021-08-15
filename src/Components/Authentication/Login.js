@@ -92,32 +92,51 @@ class Login extends Component {
 
     render() {
         return (
-            <div>
-                <table class="FullTable">
-                    <tr>
-                        <td class="LoginHalfTd1">
-
-                            <div class='HeaderSection'>Cloud School Features
-                            </div>
-                            <div class='HeaderSection1'>
-                                <ul>
-                                    <li>Teacher Maintenance</li>
-                                    <li>Student Maintenance</li>
-                                    <li>Teacher-Parent Interaction</li>
-                                    <li>world class reporting</li>
-                                </ul>
-                            </div>
-
-
-                        </td>
-                        <td class="LoginHalfTd2">
-
-                            <div class="DivMarginLoginDetails">
-                                <React.Fragment>
-                                    <h1>
-
-                                        <React.Fragment>
-                                            <div class='HeaderSection'>Login
+             <React.Fragment>
+                <section class="login-block">
+                    <div class="container">
+                    <div class="row">
+                        <div class="col-md-5 login-sec">
+                            <h2 class="text-center">Login Now</h2>
+                            <form class="login-form">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="text-captialize">Email</label>
+                                    <input type="text" class="form-control" placeholder="" 
+                                        name="Email"
+                                        value={this.state.fields.Email}
+                                        onChange={this.HandleChange}/>
+                                    <div class="DivErrorMessage">{this.state.errors.Email}</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1" class="text-captialize">Password</label>
+                                    <input type="password" class="form-control" placeholder="" 
+                                        name="Password"
+                                     value={this.state.fields.Password}
+                                     onChange={this.HandleChange}/>
+                                     <div class="DivErrorMessage">{this.state.errors.Password}</div>
+                                </div>
+                
+                
+                                <div class="form-check">
+                                    <label class="form-check-label" >
+                                    <input type="checkbox" class="form-check-input" />
+                                    <small>Remember Me</small>
+                                    </label>                                    
+                                </div>
+                                <Container id="DivErrorContainer" style={{ display: 'none' }}>
+                                                <Alert severity="error">{this.state.strErrMessage}</Alert>
+                                </Container>
+                                <button type="submit" class="btn btn-login float-right" onClick={this.fnLogin}>Submit</button>
+                            
+                            </form>
+                        </div>
+                        <div class="col-md-7 banner-sec">
+                            
+                        </div>
+                     </div>
+                    </div>
+                </section>
+                                            {/* <div class='HeaderSection'>Login
                                             </div>
                                             <Divider></Divider>
                                             <Container id="DivErrorContainer" style={{ display: 'none' }}>
@@ -168,18 +187,9 @@ class Login extends Component {
                                                         <DoneIcon></DoneIcon>Login
                                                     </Button>
                                                 </div>
-                                            </div>
+                                            </div> */}
 
                                         </React.Fragment>
-
-                                    </h1>
-                                </React.Fragment>
-                            </div>
-
-                        </td>
-                    </tr>
-                </table>
-            </div>
         )
     }
 }

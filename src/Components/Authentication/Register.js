@@ -147,32 +147,63 @@ class Register extends Component {
 
     render() {
         return (
-            <div>
-                <table class="FullTable">
-                    <tr>
-                        <td class="LoginHalfTd1">
+            
+            <React.Fragment>
+                <section class="register-block">
+                    <div class="container">
+                    <div class="row">
+                        <div class="col-md-5 register-sec">
+                            <h2 class="text-center">Sign Up For Your Account</h2>
+                            <form class="login-form">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="text-captialize">First Name</label>
+                                    <input type="text" class="form-control" placeholder="" 
+                                        value={this.state.fields.FirstName}
+                                        onChange={this.HandleChange}
+                                        name="FirstName"/>
+                                    <div class="DivErrorMessage">{this.state.errors.FirstName}</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="text-captialize">Institute Name</label>
+                                    <input type="text" class="form-control" placeholder="" 
+                                        name="InstituteName"
+                                        value={this.state.fields.InstituteName}
+                                        onChange={this.HandleChange}/>
+                                    <div class="DivErrorMessage">{this.state.errors.InstituteName}</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="text-captialize">Email</label>
+                                    <input type="text" class="form-control" placeholder="" 
+                                        value={this.state.fields.Email}
+                                        onChange={this.HandleChange}
+                                        name="Email"/>
+                                    <div class="DivErrorMessage">{this.state.errors.Email}</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1" class="text-captialize">Password</label>
+                                    <input type="password" class="form-control" placeholder="" 
+                                        name="Password"
+                                     value={this.state.fields.Password}
+                                     onChange={this.HandleChange}/>
+                                     <div class="DivErrorMessage">{this.state.errors.Password}</div>
+                                </div>
+                                <Container id="DivErrorContainer" style={{ display: 'none' }}>
+                                                <Alert severity="error">{this.state.strErrMessage}</Alert>
+                                </Container>
+                                <button class="btn btn-register float-right"  onClick={this.fnCreateAccount}>Register</button>
+                                <div class='LoginAccountExists'>
+                                   Already Have an account <a href="Login">Click here to Login</a>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-7 banner-sec2">
+                            
+                        </div>
+                     </div>
+                    </div>
+                </section>
 
-                            <div class='HeaderSection'>Cloud School Features
-                            </div>
-                            <div class='HeaderSection1'>
-                                <ul>
-                                    <li>Teacher Maintenance</li>
-                                    <li>Student Maintenance</li>
-                                    <li>Teacher-Parent Interaction</li>
-                                    <li>world class reporting</li>
-                                </ul>
-                            </div>
-
-
-                        </td>
-                        <td class="LoginHalfTd2">
-
-                            <div class="DivMarginLoginDetails">
-                                <React.Fragment>
-                                    <h1>
-
-                                        <React.Fragment>
-                                            <div class='HeaderSection'>Sign up for your account
+                                            {/* <div class='HeaderSection'>Sign up for your account
                                             </div>
                                             <Divider></Divider>
                                             <Container id="DivErrorContainer" style={{ display: 'none' }}>
@@ -200,7 +231,7 @@ class Register extends Component {
                                                         onChange={this.HandleChange}
                                                     />
                                                     <div class="DivErrorMessage">{this.state.errors.LastName}</div>
-                                                </div> */}
+                                                </div> 
                                                 <div class='MarginNormal'>
                                                     <TextField fullWidth
                                                         label="Institute Name"
@@ -234,7 +265,7 @@ class Register extends Component {
                                                         name="Phone"
                                                     />
                                                     <div class="DivErrorMessage">{this.state.errors.Phone}</div>
-                                            </div> */}
+                                            </div> 
                                                 <div class='MarginNormal'>
                                                     <TextField
                                                         label="Password"
@@ -270,18 +301,9 @@ class Register extends Component {
                                                 <div class='LoginAccountExists'>
                                                     Already Have an account <a href="Login">Click here to Login</a>
                                                 </div>
-                                            </div>
+                                            </div> */}
 
                                         </React.Fragment>
-
-                                    </h1>
-                                </React.Fragment>
-                            </div>
-
-                        </td>
-                    </tr>
-                </table>
-            </div>
         )
     }
 }

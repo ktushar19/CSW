@@ -83,7 +83,34 @@ class ForgotPassword extends Component {
 
     render() {
         return (
-            <div class='DetailsSection'>
+            <React.Fragment>
+                <section class="login-block">
+                    <div class="container">
+                    <div class="row">
+                        <div class="col-md-5 login-sec">
+                            <h2 class="text-center">For New Password</h2>
+                            <form class="login-form">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail" class="text-captialize">Enter your Email</label>
+                                    <input type="text" class="form-control" placeholder="" 
+                                        type="email"
+                                        name="Email"
+                                        value={this.state.frgtPwdFields.Email}
+                                        onChange={this.HandleChange}/>
+                                    <div class="DivErrorMessage">{this.state.frgtPwderrors.Email}</div>
+                                </div>
+                                <button type="submit" class="btn btn-login float-right" onClick={this.fnForgotPwd}>Send</button>
+                            
+                            </form>
+                        </div>
+                        <div class="col-md-7 banner-sec">
+                            
+                        </div>
+                     </div>
+                    </div>
+                </section>
+            </React.Fragment>
+            /*<div class='DetailsSection'>
                 <div class='MarginNormal'>
                     <TextField
                         label="Enter your e-mail"
@@ -110,7 +137,7 @@ class ForgotPassword extends Component {
                 >
                     <DoneIcon></DoneIcon>Send
                 </Button>
-            </div>
+            </div>*/
         )
     }
 

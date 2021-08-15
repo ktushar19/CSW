@@ -101,7 +101,44 @@ class ResetPassword extends Component {
     render() {
         let params = queryString.parse(this.props.location.search);
         return (
-            <div class='DetailsSection'>
+            <React.Fragment>
+                <section class="login-block">
+                    <div class="container">
+                    <div class="row">
+                        <div class="col-md-5 login-sec">
+                            <h2 class="text-center">Change Password</h2>
+                            <form class="login-form">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword" class="text-captialize">New Password</label>
+                                    <input type="text" class="form-control" placeholder="" 
+                                        type="password"
+                                        variant="outlined"
+                                        name="Password"
+                                        value={this.state.resetPwdFields.Password}
+                                        onChange={this.HandleChange}/>
+                                    <div class="DivErrorMessage">{this.state.resetPwderrors.Password}</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1" class="text-captialize">Confirm Password</label>
+                                    <input type="password" class="form-control" placeholder="" 
+                                        variant="outlined"
+                                        name="ConfirmPassword"
+                                        value={this.state.resetPwdFields.ConfirmPassword}
+                                        onChange={this.HandleChange}/>
+                                     <div class="DivErrorMessage">{this.state.resetPwderrors.ConfirmPassword}</div>
+                                </div>
+                                <button type="submit" class="btn btn-login float-right" onClick={this.fnResetPwd(params)}>Reset Password</button>
+                            
+                            </form>
+                        </div>
+                        <div class="col-md-7 banner-sec">
+                            
+                        </div>
+                     </div>
+                    </div>
+                </section>
+            </React.Fragment>
+            /*<div class='DetailsSection'>
                 <div class='MarginNormal'>
                     <TextField
                         label="New Password"
@@ -139,7 +176,7 @@ class ResetPassword extends Component {
                 >
                     <DoneIcon></DoneIcon>Reset Password
                 </Button>
-            </div>
+            </div>*/
         );
     }
 }
