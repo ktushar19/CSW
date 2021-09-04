@@ -44,7 +44,7 @@ class Register extends Component {
                 password: this.state.fields.Password,
                 instituteName: this.state.fields.InstituteName
             }
-            axios.post('http://localhost:8091/api/auth/signup', signUpRequest)
+            axios.post('http://13.126.105.95:8091/api/auth/signup', signUpRequest)
                 .then(response => {
                     alert(JSON.stringify(response.data))
                 })

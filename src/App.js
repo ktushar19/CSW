@@ -217,8 +217,29 @@ function App() {
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
             <ArrowForwardIcon />
-          </IconButton>}        
+          </IconButton>}    
+      <BrowserRouter>
+        <div>
+          <Switch>
+            <Route path="/" exact component={LoginPage} />
+            <Route path="/Login" exact component={Login} />
+            <Route path="/verify" exact component={ActivateAccount} />
+            <Route path="/Logout" exact component={Logout} />
+            <Route path="/Dashboard" exact component={Dashboard} />
+            <Route path="/Register" exact component={Register} />
+            <Route path="/ForgotPassword" exact component={ForgotPassword} />
+            <Route path="/reset" exact component={ResetPage} />
+            <Route path="/ResetPassword" exact component={ResetPassword} />
+            <Route path="/MasterMenu" exact component={MasterMenu} />
+            <Route path="/Staff" exact component={Staff} />
+            <Route path="/StaffDetails" exact component={StaffDetails} />
+            <Route path="/Student" exact component={Student} />
+            <Route path="/CreateAccount" exact component={CreateAccount} />
+            <Route path="/LoginPage" exact component={LoginPage} />
+            <Route path="/Staff/:id" exact component={Staff} />
+          </Switch>
         </div>
+        </BrowserRouter>
               <BrowserRouter>
                 <Switch>
                   <Route path="/Login" exact component={Login} />
@@ -240,6 +261,7 @@ function App() {
           <Box pt={4}>
             <Copyright />
           </Box>
+        </div>
         </Container>
       </main>
     </div>
