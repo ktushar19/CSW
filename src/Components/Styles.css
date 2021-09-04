@@ -917,14 +917,14 @@ button.searchbtn:hover {
 }
 
 .banner-sec {
-	background: url(../Images/school-4527713_1920.jpg) no-repeat left bottom;
+	/*background: url(../Images/school-4527713_1920.jpg) no-repeat left bottom;*/
 	background-size: cover;
 	/*min-height: 500px;*/
 	border-radius: 0 10px 10px 0;
 	padding: 0;
 }
 .banner-sec2 {
-	background: url(../Images/school-4527713_1920.jpg) no-repeat left bottom;
+	/*background: url(../Images/school-4527713_1920.jpg) no-repeat left bottom;*/
 	background-size: cover;
 	/*min-height: 500px;*/
 	border-radius: 0 10px 10px 0;

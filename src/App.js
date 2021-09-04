@@ -43,7 +43,7 @@ function App() {
             <Route path="/Login" exact component={Login} />
             <Route path="/verify" exact component={ActivateAccount} />
             <Route path="/Logout" exact component={Logout} />
-            <ProtectedRoute path="/Dashboard" exact component={Dashboard} />
+            <Route path="/Dashboard" exact component={Dashboard} />
             <Route path="/Register" exact component={Register} />
             <Route path="/ForgotPassword" exact component={ForgotPassword} />
             <Route path="/reset" exact component={ResetPage} />

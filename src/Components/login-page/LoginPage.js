@@ -61,7 +61,7 @@ class LoginPage extends Component {
                 password: this.state.fields.Password
             }
 
-            axios.post('http://localhost:8091/api/auth/signin', signInRequest)
+            axios.post('http://13.126.105.95:8091/api/auth/signin', signInRequest)
                 .then(response => {
                     console.log(response.data);
                     localStorage.setItem("authorization",response.data.jwtToken);
