@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../../App.css';
+import axios from 'axios';
 
 import TextField from "@material-ui/core/TextField";
 import { colors, Container } from '@material-ui/core'
@@ -48,6 +49,23 @@ class Login extends Component {
             fields["Email"] = "";
             fields["Password"] = "";
             this.setState({ fields: fields });
+
+            const signInRequest = {
+                userName: this.state.fields.Email,
+                password: this.state.fields.Password
+            }
+
+            axios.post('http://13.126.105.95:8091/api/auth/signin', signInRequest)
+                .then(response => {
+                    console.log(response.data);
+                    localStorage.setItem("authorization",response.data.jwtToken);
+                    localStorage.setItem("userName",response.data.userName);
+                    window.location = "/Dashboard";
+                })
+                .catch((error) => {
+                    alert("User not yet activated/verified...") 
+                    console.log(error);
+                })
         }
     }
 
