@@ -1,6 +1,5 @@
 import Ract, {Component} from 'react';
 import TopBar from '../Common/TopBar'
-import Footer from '../Common/Footer'
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import axios from 'axios';

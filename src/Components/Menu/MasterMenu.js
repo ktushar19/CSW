@@ -1,150 +1,91 @@
-import React, {Component} from 'react'
-import '../../App.css';
+import React from 'react';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import PeopleIcon from '@material-ui/icons/People';
+import LayersIcon from '@material-ui/icons/Layers';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import ClassIcon from '@material-ui/icons/Class';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
+import SyncAltIcon from '@material-ui/icons/SyncAlt';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import SettingsIcon from '@material-ui/icons/Settings';
+import Link from '@material-ui/core/Link';
 
-import Accordion from '@material-ui/core/Accordion'
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+export const MasterMenu = (
+  <div>                
+    <Link color="inherit" href="/">
+        <ListItem button>
+          <ListItemIcon>
+            <DashboardIcon />
+          </ListItemIcon>
+          <ListItemText primary="Dashboard" />
+        </ListItem>
+    </Link>
+    <ListItem button>
+      <ListItemIcon>
+        <DateRangeIcon />
+      </ListItemIcon>
+      <ListItemText primary="Calendar" />
+    </ListItem>   
+  {/* <ListSubheader inset>MANAGEMENT</ListSubheader> */}
+  <ListItem button>
+      <ListItemIcon>
+        <ClassIcon />
+      </ListItemIcon>
+      <ListItemText primary="Classes" />
+    </ListItem>
+    <Link color="inherit" href="/StaffDetails">
+        <ListItem button>
+          <ListItemIcon>
+            <SupervisorAccountIcon />
+          </ListItemIcon>
+          <ListItemText primary="Staff" />
+        </ListItem>
+    </Link>
+    <ListItem button>
+      <ListItemIcon>
+        <LayersIcon />
+      </ListItemIcon>
+      <ListItemText primary="Students" />
+    </ListItem>
+  <ListItem button>
+    <ListItemIcon>
+      <ContactPhoneIcon />
+    </ListItemIcon>
+    <ListItemText primary="Personnel & Contacts" />
+  </ListItem>
+  <ListItem button>
+    <ListItemIcon>
+      <SyncAltIcon />
+    </ListItemIcon>
+    <ListItemText primary="Enrollments" />
+  </ListItem>
+  <ListItem button>
+    <ListItemIcon>
+      <AssignmentIcon />
+    </ListItemIcon>
+    <ListItemText primary="CRM" />
+  </ListItem>
+  <ListItem button>
+    <ListItemIcon>
+      <PersonAddIcon />
+    </ListItemIcon>
+    <ListItemText primary="User Accounts" />
+  </ListItem>
+  <ListItem button>
+    <ListItemIcon>
+      <SettingsIcon />
+    </ListItemIcon>
+    <ListItemText primary="Configurations" />
+  </ListItem>
+</div>
+);
 
-
-class MasterMenu extends Component{
-
-    
-
-    render(){
-        return(
-            <div class="DivMasterMenu">
-                            <Accordion style={{width:"250px",marginBottom:"10px"}}>
-                                <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                                
-
-                                >
-                                <Typography>Staff Management</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                <Typography>
-                                <div class='DivMasterSubMenu'>
-                                                <ul>
-                                                    <li><a href="Staff">Teacher Maintenance</a></li>
-                                                    <li><a href="Student">Student Maintenance</a></li>
-                                                    <li><a href="Student">Teacher-Parent Interaction</a></li>
-                                                    <li><a href="Staff">World class reporting</a></li>
-                                                </ul>
-                                            </div>
-                                </Typography>
-                                </AccordionDetails>
-                </Accordion>
-                <Accordion style={{width:"250px",marginBottom:"10px"}}>
-                                <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                                >
-                                <Typography>Student Management</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                <Typography>
-                                <div class='DivMasterSubMenu'>
-                                                <ul>
-                                                    <li><a href="Staff">Teacher Maintenance</a></li>
-                                                    <li><a href="Student">Student Maintenance</a></li>
-                                                    <li><a href="Student">Teacher-Parent Interaction</a></li>
-                                                    <li><a href="Staff">World class reporting</a></li>
-                                                </ul>
-                                            </div>
-                                </Typography>
-                                </AccordionDetails>
-                </Accordion>
-                <Accordion style={{width:"250px",marginBottom:"10px"}}>
-                                <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                                >
-                                <Typography>Account Management</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                <Typography>
-                                <div class='DivMasterSubMenu'>
-                                                <ul>
-                                                    <li><a href="Staff">Teacher Maintenance</a></li>
-                                                    <li><a href="Student">Student Maintenance</a></li>
-                                                    <li><a href="Student">Teacher-Parent Interaction</a></li>
-                                                    <li><a href="Staff">World class reporting</a></li>
-                                                </ul>
-                                            </div>
-                                </Typography>
-                                </AccordionDetails>
-                </Accordion>
-                <Accordion style={{width:"250px",marginBottom:"10px"}}>
-                                <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                                >
-                                <Typography>Exams Management</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                <Typography>
-                                <div class='DivMasterSubMenu'>
-                                                <ul>
-                                                    <li><a href="Staff">Teacher Maintenance</a></li>
-                                                    <li><a href="Student">Student Maintenance</a></li>
-                                                    <li><a href="Student">Teacher-Parent Interaction</a></li>
-                                                    <li><a href="Staff">World class reporting</a></li>
-                                                </ul>
-                                            </div>
-                                </Typography>
-                                </AccordionDetails>
-                </Accordion>
-                <Accordion style={{width:"250px",marginBottom:"10px"}}>
-                                <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                                >
-                                <Typography>Results</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                <Typography>
-                                <div class='DivMasterSubMenu'>
-                                                <ul>
-                                                    <li><a href="Staff">Teacher Maintenance</a></li>
-                                                    <li><a href="Student">Student Maintenance</a></li>
-                                                    <li><a href="Student">Teacher-Parent Interaction</a></li>
-                                                    <li><a href="Staff">World class reporting</a></li>
-                                                </ul>
-                                            </div>
-                                </Typography>
-                                </AccordionDetails>
-                </Accordion>
-                <Accordion style={{width:"250px",marginBottom:"10px"}}>
-                                <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                                >
-                                <Typography>Configuration</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                <Typography>
-                                <div class='DivMasterSubMenu'>
-                                                <ul>
-                                                    <li><a href="Staff">Teacher Maintenance</a></li>
-                                                    <li><a href="Student">Student Maintenance</a></li>
-                                                    <li><a href="Student">Teacher-Parent Interaction</a></li>
-                                                    <li><a href="Staff">World class reporting</a></li>
-                                                </ul>
-                                            </div>
-                                </Typography>
-                                </AccordionDetails>
-                </Accordion>
-            </div>
-        )
-    }
-}
 export default MasterMenu
+

@@ -1,27 +1,41 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
+import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Drawer from '@material-ui/core/Drawer';
+import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
+import Container from '@material-ui/core/Container';
+import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import MasterMenu from './MasterMenu';
-import PersonIcon from '@material-ui/icons/Person';
-import { Link } from 'react-router-dom';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import MasterMenu from '../Menu/MasterMenu';
 import { Dropdown } from 'react-bootstrap';
+import PersonIcon from '@material-ui/icons/Person';
+import MailIcon from '@material-ui/icons/Mail';
 
+
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center" className={"footer"}>
+      {'Copyright © '}
+      Site designed and developed by
+      <Link color="inherit" href="#">
+         TusharKashid
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const drawerWidth = 240;
 
@@ -29,147 +43,170 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
+  toolbar: {
+    paddingRight: 24, // keep right padding when drawer closed
+  },
+  toolbarIcon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
+    //backgroundImage:url("../../Images/logo.jpg"),
+  },
   appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
   appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: 36,
   },
-  hide: {
+  menuButtonHidden: {
     display: 'none',
   },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  personIconAlignment: {
-    'margin-inline': '1000px'
-  },
-  loginMessage: {
-    'font-size': '13px',
-    'margin-inline': '1000px'
+  title: {
+    flexGrow: 1,
   },
   drawerPaper: {
+    position: 'relative',
+    whiteSpace: 'nowrap',
     width: drawerWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
+  drawerPaperClose: {
+    overflowX: 'hidden',
+    transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: -drawerWidth,
+    width: theme.spacing(7),
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing(9),
+    },
   },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
+  appBarSpacer: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    height: '100vh',
+    overflow: 'auto',
+  },
+  container: {
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+  },
+  paper: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
+  },
+  fixedHeight: {
+    height: 240,
   },
 }));
 
-export default function PersistentDrawerLeft() {
+export default function ResponsiveDrawer() {
   const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
+  const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
+      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+        <Toolbar className={classes.toolbar}>
           <IconButton
+            edge="start"
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
+            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
             <MenuIcon />
           </IconButton>
-          <div className="dropdown">
-            <Dropdown>
-              <Dropdown.Toggle
-                variant="secondary btn-sm"
-                id="dropdown-basic">
-                Menu
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu style={{ backgroundColor: '#73a47' }}>
-                <Dropdown.Item href="/Logout">Logout</Dropdown.Item>
-                <Dropdown.Item href="#">Profile</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
-          <Typography noWrap>
-            <div className={clsx(classes.personIconAlignment)}>
-            <PersonIcon ></PersonIcon> 
-            </div>
-            <div className={clsx(classes.loginMessage)}>Welcome {localStorage.getItem("userName")}</div>
+          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+            Dashboard
           </Typography>
+          <IconButton color="inherit">
+            <Badge badgeContent={4} color="secondary">
+              <NotificationsIcon />              
+            </Badge>
+          </IconButton>
+          <IconButton aria-label="show 4 new mails" color="inherit">
+              <Badge badgeContent={4} color="secondary">
+                <MailIcon />
+              </Badge>
+            </IconButton>
+          <div className="dropdown">
+                <Dropdown>
+                    
+                  <Dropdown.Toggle
+                    variant="secondary btn-sm"
+                    id="dropdown-basic">
+                      <Typography noWrap>
+                        <div className={clsx(classes.personIconAlignment)}>
+                        <div className={clsx(classes.loginMessage)}><PersonIcon ></PersonIcon>Welcome {localStorage.getItem("userName")}</div>
+                    
+                      </div>                      
+                    </Typography>
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu >
+                    <Dropdown.Item href="#">Profile</Dropdown.Item>
+                    <Dropdown.Item href="/Logout">Logout</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+             
         </Toolbar>
       </AppBar>
       <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
+        variant="permanent"
         classes={{
-          paper: classes.drawerPaper,
+          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
         }}
+        open={open}
       >
-        <div className={classes.drawerHeader}>
+        <div className={classes.toolbarIcon} >
+          <div id="logo-element"></div>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            <ChevronLeftIcon />
           </IconButton>
         </div>
         <Divider />
-
-        <MasterMenu></MasterMenu>
+         <List>{MasterMenu}</List> 
+        <Divider />
+         {/* <List>{secondaryListItems}</List> */}
       </Drawer>
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader} />
+      <main className={classes.content}>
+        <div className={classes.appBarSpacer} />
+        <Container maxWidth="lg" className={classes.container}>
 
+          <Box pt={4}>
+            <Copyright />
+          </Box>
+        </Container>
       </main>
     </div>
-
   );
 }

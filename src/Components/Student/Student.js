@@ -6,7 +6,6 @@ import Divider from '@material-ui/core/Divider'
 import { green } from '@material-ui/core/colors';
 
 import TopBar from '../Common/TopBar'
-import Footer from '../Common/Footer'
 
 
 class Student extends Component{
@@ -48,7 +47,6 @@ class Student extends Component{
                     </tr>
                     
                 </table>
-                <Footer></Footer>
             </div>
         )
     }

@@ -249,19 +249,14 @@ td.data-insert {
     margin: 40px 100px;
     text-align: left;
 }
-.content{
-	margin: 40px 110px;
-    text-align: left;
-}
 .content h1{
 	font-size: 80px;
 	line-height: initial;
 	font-weight: 100;
 }
-.content h3{
-	font-size: 32px;
-	font-weight: 100;
-	line-height: initial;
+.content h5{
+	font-size: 1.25rem;
+	font-weight: bold;
 }
 
 .homebanner-content{
@@ -339,9 +334,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined {
 	background-color: transparent !important;
 	transition: unset !important;
 } */
-.MuiPaper-rounded{
-	border-radius: 0px !important;
-}
+
 .MuiPaper-elevation1 {
 	box-shadow: 0px 0px 0px 0px !important;
 	text-align: right;
@@ -727,7 +720,7 @@ min-height: 50px;
 }
 .MuiAppBar-colorPrimary {
     color: #fff;
-    background-color: #3f51b5 !important;
+    background-color: #039be5;
 }
 .MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
     background-color: #3f51b5 !important;
@@ -784,13 +777,61 @@ a#backButtonIndex {
 .PrivateSwitchBase-root-10 {
     padding: 9px 5px 9px 10px;
 }
-button#dropdown-basic {
-    background-color: white;
-    color: #000;
-    border: 1px solid#ced4da;
-    width: 100%;
-    text-align: left;
+/*new css for dashboard start*/
+a:hover {
+    color: #0a58ca;
+    text-decoration: none !important;
 }
+
+button#dropdown-basic:focus {
+    outline: none !important;
+    border: 0px !important;
+    box-shadow: none !important;
+}
+#logo-element{
+	background-image: url('../Images/logo.jpg');
+	width: 55px;
+    height: 53px;
+    float: left;
+    text-align: left;
+    background-position: center left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    content: none;
+    border: none !important;
+    margin: 5px 45px;
+}
+.MuiListItemIcon-root{
+	min-width: 56px !important;
+}
+.MuiListSubheader-inset {
+    padding-left: 62px !important;
+}
+.MuiList-root {
+    overflow-x: hidden !important;
+    height: 500px !important;
+    overflow-y: auto;
+}
+/* width */
+::-webkit-scrollbar {
+	width: 0px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+	background: #f4f7f6; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+	background: #f4f7f6; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+	background: #f4f7f6; 
+  }
+/*new css for dashboard end*/
 .dropdown-toggle::after {
     /*display: inline-block;*/
     content: "";
@@ -1055,3 +1096,83 @@ button.searchbtn:hover {
     text-align: center;
 }
 /*Login page css End*/
+/*DashBoard css start*/
+.makeStyles-container-73{
+    padding-top: 0px !important;
+}
+.MuiIconButton-root{
+    color: #000;
+}
+.MuiDrawer-paper{
+    z-index: 0;
+}
+.MuiIconButton-edgeStart {
+    margin-left: 0px !important;
+}
+.MuiAppBar-colorPrimary {
+    color: #000 !important;
+    background-color: #ffffff !important;
+}
+button#dropdown-basic {
+    background-color:transparent !important;
+    color: #000;
+	border: none !important;
+	margin-left: 10px;
+	display: flex;
+}
+.MuiPaper-root {
+    color: rgba(0, 0, 0, 0.87);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    background-color: #f4f7f6;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    color: white;
+    text-align: center;
+    padding: 5px 0px;
+}
+.MuiListItemIcon-root{
+    color: #000;
+}
+.MuiDrawer-paperAnchorDockedLeft {
+    border-right: 0px !important;
+    z-index: 0 !important;
+}
+.makeStyles-drawerPaper-9 {
+    width: 240px;
+    position: relative;
+    transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+    white-space: nowrap;
+}
+.MuiContainer-root{
+    padding-top: 10px !important;
+}
+.dash-card .MuiListItem-gutters {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.dash-card .MuiListItemIcon-root {
+    float: left;
+    width: 50px;
+    height: 50px;
+    background: #f7f7f7;
+    border-radius: .55rem;
+    margin-right: 15px;
+}
+.dash-card svg {
+    color: #17a2b8;
+    font-size: 35px;
+    line-height: 50px;
+    margin: auto;
+}
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+/*DashBoard css end*/

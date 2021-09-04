@@ -21,7 +21,7 @@ class Logout extends Component {
         //localStorage.clear("token");
         localStorage.clear();
         this.setState({navigate:true});
-        window.location = '/LoginPage';
+        window.location = '/Login';
     }
 
     render() {

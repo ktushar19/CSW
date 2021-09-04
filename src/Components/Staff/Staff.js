@@ -32,7 +32,6 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 
 import TextField from "@material-ui/core/TextField";
 import TopBar from '../Common/TopBar'
-import Footer from '../Common/Footer'
 import { useHistory } from "react-router-dom";
 import AddressTab from './AddressTab';
 
@@ -476,11 +475,6 @@ fnFetchData=(e)=>{
                            <input type='submit' className='btn btn-danger btn-block' value='Submit'/>  
                         </div> */}
                          </div>              
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <AddressTab></AddressTab>
-                        </div>
                     </div>
                     </div>
                 </div>
