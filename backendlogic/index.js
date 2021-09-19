@@ -19,4 +19,7 @@ app.use(cors())
 const staffroutes = require('./routes/staffroutes')
 app.use('/app', staffroutes)
 
+const userroutes = require('./routes/userroutes')
+app.use('/app', userroutes)
+
 app.listen(4000, () => console.log("server is up and running"))

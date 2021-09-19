@@ -22,6 +22,7 @@ import Copyright from './Components/Common/Copyright';
 import ProtectedRoute from './Components/Authentication/ProtectedRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ActivateAccount from './Components/Authentication/ActivateAccount';
+import UserDetails from './Components/Users/UserDetails';
 
 /*new added started*/
 import clsx from 'clsx';
@@ -237,6 +238,7 @@ function App() {
             <Route path="/CreateAccount" exact component={CreateAccount} />
             <Route path="/LoginPage" exact component={LoginPage} />
             <Route path="/Staff/:id" exact component={Staff} />
+            <Route path="/UserDetails" exact component={UserDetails} />
           </Switch>
         </div>
         </BrowserRouter>
