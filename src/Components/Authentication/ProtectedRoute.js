@@ -5,7 +5,8 @@ import {Route} from "react-router-dom";
 
 class ProtectedRoute extends Component {
     render() {
-        const jwtToken = localStorage.getItem("authorization");
+        const jwtToken = localStorage.getItem("token");
+        const useremail = localStorage.getItem("email");
         const { component: Component, ...props } = this.props;
         return (
             <Route

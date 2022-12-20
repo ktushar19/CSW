@@ -4,16 +4,16 @@ import queryString from 'query-string';
 
 class ActivateAccount extends Component {
     constructor(props) {
-        super(props);
+        super(props)
     }
 
     componentDidMount() {
         let params = queryString.parse(this.props.location.search);
-        axios.get("http://localhost:8091/api/auth/activate-user?userVerifyToken="+params.token)
+        axios.get("http://localhost:4000/app/Login/activate-user?userVerifyToken="+params.token)
         .then(response => {
             if(response.data) {
                 alert(JSON.stringify(response.data)) 
-                window.location = "/LoginPage" 
+                window.location = "/Login" 
             } else {
                  alert("Token is expired or invalid token"); 
             }

@@ -17,6 +17,9 @@ app.use(cors())
 //1st argument base path and second url is routeurls
 
 const staffroutes = require('./routes/staffroutes')
+const registerRouter = require('./routes/registerRoutes')
+
 app.use('/app', staffroutes)
+app.use('/app', registerRouter)
 
 app.listen(4000, () => console.log("server is up and running"))

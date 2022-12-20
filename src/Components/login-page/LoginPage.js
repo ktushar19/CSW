@@ -64,12 +64,12 @@ class LoginPage extends Component {
             axios.post('http://13.126.105.95:8091/api/auth/signin', signInRequest)
                 .then(response => {
                     console.log(response.data);
-                    localStorage.setItem("authorization",response.data.jwtToken);
-                    localStorage.setItem("userName",response.data.userName);
+                    //localStorage.setItem("authorization",response.data.jwtToken);
+                    //localStorage.setItem("userName",response.data.userName);
                     window.location = "/Dashboard";
                 })
                 .catch((error) => {
-                    alert("User not yet activated/verified...") 
+                    //alert("User not yet activated/verified...") 
                     console.log(error);
                 })
         }

@@ -77,32 +77,32 @@ class Staff extends Component{
         let userNameError = '';
         let passwordError = '';
 
-        if(this.state.firstName=="")
+        if(this.state.firstName==="")
         {
             firstNameError = "Please enter First Name"
             this.setState({firstNameError});
         }
-        if(this.state.middleName=="")
+        if(this.state.middleName==="")
         {
             middleNameError = "Please enter Middle Name"
             this.setState({middleNameError});
         }
-        if(this.state.lastName=="")
+        if(this.state.lastName==="")
         {
             lastNameError = "Please enter Last Name"
             this.setState({lastNameError});
         }
-        if(this.state.userName=="")
+        if(this.state.userName==="")
         {
             userNameError = "Please enter Last Name"
             this.setState({userNameError});
         }
-        if(this.state.email=="")
+        if(this.state.email==="")
         {
             emailError = "Please enter Email address"
             this.setState({emailError});
         }
-        if(this.state.password=="")
+        if(this.state.password==="")
         {
             passwordError = "Please enter password"
             this.setState({passwordError});

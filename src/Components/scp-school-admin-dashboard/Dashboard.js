@@ -48,7 +48,7 @@ export default function Dashboard() {
         return (
             <div class="dashboard">
               <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumb}>
-                  <Link color="inherit" href="/">
+                  <Link color="inherit" href="/Dashboard">
                     <HomeIcon />
                   </Link>
                   <Typography color="textPrimary">Dashboard</Typography>

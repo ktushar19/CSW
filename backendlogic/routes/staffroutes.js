@@ -5,8 +5,6 @@ const staffModel = require('../models/staffModels')
 const bcrypt = require('bcrypt')
 const { Mongoose } = require('mongoose')
 
-
-
 staffRouter.post('/Staff', async (request, response)=>{
     const saltPassword = await bcrypt.genSalt(10)
     const securePassword = await bcrypt.hash(request.body.password, saltPassword)
@@ -42,39 +40,39 @@ staffRouter.get('/Staff', async (request, response) =>{
 })
 
 //Find By ID
-staffRouter.get('/Staff/:id', async (request, response) =>{
-    if(request.params.id){
-        const id = request.params.id;
-        //console.log(id);
+// staffRouter.get('/Staff/:id', async (request, response) =>{
+//     if(request.params.id){
+//         const id = request.params.id;
+//         //console.log(id);
         
-        //staffModel.findById("60c4e19e89af182900ccd7bf")
-        //staffModel.findOne({ firstName: "Tushar" })
-        staffModel.findById(request.params.id)
-        .then(data =>{
-            if(!data){
-                response.this.status(404).send({message:'Not found user with ${id}!'})
-            }else{
-                response.json(data);
-            }            
-        })
-        .catch(error=>{
-            response.this.status(500).send({message:'Error retrieving user with id'+ id})
-        })
-    }
-    else{
-        //staffModel.find()
+//         //staffModel.findById("60c4e19e89af182900ccd7bf")
+//         //staffModel.findOne({ firstName: "Tushar" })
+//         staffModel.findById(request.params.id)
+//         .then(data =>{
+//             if(!data){
+//                 response.this.status(404).send({message:'Not found user with ${id}!'})
+//             }else{
+//                 response.json(data);
+//             }            
+//         })
+//         .catch(error=>{
+//             response.this.status(500).send({message:'Error retrieving user with id'+ id})
+//         })
+//     }
+//     else{
+//         //staffModel.find()
         
-        response.this.status(500).send({message:'Bad Request'})
-        //staffModel.findById()
-    .then(data =>{
-        response.json(data)
-    })
-    .catch(error =>{
-        response.json(error)
-    })
-    }
+//         response.this.status(500).send({message:'Bad Request'})
+//         //staffModel.findById()
+//     .then(data =>{
+//         response.json(data)
+//     })
+//     .catch(error =>{
+//         response.json(error)
+//     })
+//     }
    
-})
+// })
 
 //Update
 staffRouter.put('/Staff/:id', async (request, response) => {

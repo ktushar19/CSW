@@ -1,27 +1,19 @@
 import Ract, {Component} from 'react';
-import TopBar from '../Common/TopBar'
-import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
-import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import axios from 'axios';
 import {useHistory, useParams} from 'react-router-dom';
 
-import { Table, Snackbar } from '@material-ui/core';
+import { Table} from '@material-ui/core';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TablePagination from '@material-ui/core/TablePagination';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import SnackBar from '../Common/SnackBar';
 
 import Divider from '@material-ui/core/Divider'
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import Switch from '@material-ui/core/Switch';
-import PersonIcon from '@material-ui/icons/Person';
-import InfoIcon from '@material-ui/icons/Info';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
 import ViewListIcon from '@material-ui/icons/ViewList';
@@ -30,9 +22,13 @@ import { Dropdown, Tooltip, Form } from 'react-bootstrap';
 import EditIcon from '@material-ui/icons/Edit';
 import { DataGrid } from '@material-ui/data-grid';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Typography from '@material-ui/core/Typography';
 
 var staffdata = [];
+
 class StaffDetails extends Component{
+	
+	
     constructor(props)
     {
         super();        
@@ -46,9 +42,9 @@ class StaffDetails extends Component{
             password: '',
             staffdata:[]
         }
-        this.HandleChange = this.HandleChange.bind(this)        
-        this.DeleteStaff = this.DeleteStaff.bind(this)
-        this.fnSearch = this.fnSearch.bind(this)
+        this.HandleChange = this.HandleChange.bind(this);      
+        this.DeleteStaff = this.DeleteStaff.bind(this);
+        this.fnSearch = this.fnSearch.bind(this);
         //this.findbyuserById = this.findbyuserById.bind(this);
     }
 //need commn filed
@@ -112,13 +108,14 @@ DeleteStaff=(id)=>{
         );
 
     }
-    
+
     
     
 }
 
 
-    render(){
+    render(){		
+		
         return(
             <div class="DivOuterMain">
                 
@@ -127,62 +124,67 @@ DeleteStaff=(id)=>{
                 <div class="col-sm-12"></div>
             <div class="col-sm-12">
                 <div class="toolbar-button">
-                    <a href="" id="backButtonIndex" class="btn btn-default btn-outline btn-circle">
-                        <ArrowBackRoundedIcon></ArrowBackRoundedIcon>
-                    </a>
                     <a href="/Staff"><button type='submit' className='btn' value='Submit' 
                      id="create">
                         <PersonAddIcon></PersonAddIcon>Create New
                     </button></a>
                     <div class="btn-group">
-                    <button type="button" class="btn btn-outline  dropdown-toggle padding-top-7  padding-bottom-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <FlashOnIcon></FlashOnIcon>Actions<span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu " id="actionButtonsIndex">
-                                    <li class="dropdown-header font-bold"><em>Mass Imports / actions</em></li>
-                                    <li><a href="#" id="doSiblings" data-container="body" data-toggle="" data-target="#"><span class="fad fa-user-friends fa-fw"></span> Create Relatives</a></li>
-                                <li class="divider"></li>
-                                    <li class="dropdown-header font-bold"><em>Transfers</em></li>
-                                <li class="divider"></li>
-                                    <li class="dropdown-header font-bold"><em>Advanced</em></li>
-                                    <li><a href="/Student/StudentRegistrationStatistics" id="StudentRegistrationStatistics" data-container="body" data-toggle="" data-target="#"><span class=""></span> Students Registration Statistics</a></li>
-                    </ul>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-outline  dropdown-toggle padding-top-7  padding-bottom-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <ViewListIcon></ViewListIcon>View <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu " id="actionButtonsIndex">
-                                    <li class="dropdown-header font-bold"><em>Mass Imports / actions</em></li>
-                                    <li><a href="#" id="doSiblings" data-container="body" data-toggle="" data-target="#"><span class="fad fa-user-friends fa-fw"></span> Create Relatives</a></li>
-                                <li class="divider"></li>
-                                    <li class="dropdown-header font-bold"><em>Transfers</em></li>
-                                <li class="divider"></li>
-                                    <li class="dropdown-header font-bold"><em>Advanced</em></li>
-                                    <li><a href="/Student/StudentRegistrationStatistics" id="StudentRegistrationStatistics" data-container="body" data-toggle="" data-target="#"><span class=""></span> Students Registration Statistics</a></li>
-                    </ul>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-outline  dropdown-toggle padding-top-7  padding-bottom-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Status <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu " id="actionButtonsIndex">
-                                    <li class="dropdown-header font-bold"><em>Mass Imports / actions</em></li>
-                                    <li><a href="#" id="doSiblings" data-container="body" data-toggle="" data-target="#"><span class="fad fa-user-friends fa-fw"></span> Create Relatives</a></li>
-                                <li class="divider"></li>
-                                    <li class="dropdown-header font-bold"><em>Transfers</em></li>
-                                <li class="divider"></li>
-                                    <li class="dropdown-header font-bold"><em>Advanced</em></li>
-                                    <li><a href="/Student/StudentRegistrationStatistics" id="StudentRegistrationStatistics" data-container="body" data-toggle="" data-target="#"><span class=""></span> Students Registration Statistics</a></li>
-                    </ul>
-                </div>
+                        <Dropdown>                    
+                        <Dropdown.Toggle
+                            variant="secondary btn-sm"
+                            id="dropdown-basic1" >
+                                <Typography noWrap>
+                                    <FlashOnIcon></FlashOnIcon>Actions<span class="caret"></span>
+                                </Typography>
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu >
+                            <Dropdown.Item href="#">Mass Imports / actions</Dropdown.Item>
+                            <Dropdown.Item href="#">Create Relatives</Dropdown.Item>
+                            <Dropdown.Item href="#">Transfers</Dropdown.Item>
+                            <Dropdown.Item href="#">Advanced</Dropdown.Item>
+                        </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
+                    <div class="btn-group">
+                        <Dropdown>                    
+                        <Dropdown.Toggle
+                            variant="secondary btn-sm"
+                            id="dropdown-basic1">
+                            <Typography noWrap><ViewListIcon></ViewListIcon>View <span class="caret"></span>
+                             </Typography>
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu >
+                            <Dropdown.Item href="#">Mass Imports / actions</Dropdown.Item>
+                            <Dropdown.Item href="#">Create Relatives</Dropdown.Item>
+                            <Dropdown.Item href="#">Transfers</Dropdown.Item>
+                            <Dropdown.Item href="#">Advanced</Dropdown.Item>
+                        </Dropdown.Menu>
+                        </Dropdown>
+                    </div> 
+                    <div class="btn-group">
+                        <Dropdown>                    
+                        <Dropdown.Toggle
+                            variant="secondary btn-sm"
+                            id="dropdown-basic1">
+                            <Typography noWrap>
+                                 Status <span class="caret"></span>
+                            </Typography>
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu >
+                            <Dropdown.Item href="#">Mass Imports / actions</Dropdown.Item>
+                            <Dropdown.Item href="#">Create Relatives</Dropdown.Item>
+                            <Dropdown.Item href="#">Transfers</Dropdown.Item>
+                            <Dropdown.Item href="#">Advanced</Dropdown.Item>
+                        </Dropdown.Menu>
+                        </Dropdown>
+                    </div> 
                 <div class="btn-group" style={{float:"right",paddingTop:"7px"}}>
                     <SnackBar></SnackBar>
                 </div>
                 </div>
             </div>
         </div>  
-        <div class="row">
+        {/* <div class="row">
                         
                     <div class="col-sm-12">
                             <div class="row">
@@ -229,22 +231,23 @@ DeleteStaff=(id)=>{
                             </div>
                                                         
                         </div>              
-                    </div>
+                    </div> */}
         <div class="row">
                     <div class="col-sm-12">
                             <Divider ></Divider>
                             <div class="DivSectionTitle">
                                 <h4 style={{textAlign:"center"}}>This is a Details Section</h4>
-                                      <Table class="table">
+									<TableContainer component={Paper}>
+                                      <Table  aria-label="simple table">
                                             <TableHead class="thead-light">
                                                 <TableRow>
                                                     <TableCell>Id</TableCell>
-                                                    <TableCell>First Name</TableCell>
-                                                    <TableCell>Middle Name</TableCell>
-                                                    <TableCell>Last Name</TableCell>
-                                                    <TableCell>Email</TableCell>
-                                                    <TableCell>UserName</TableCell>                                                    
-                                                    <TableCell>Edit|Delete</TableCell>
+                                                    <TableCell align="right">First Name</TableCell>
+                                                    <TableCell align="right">Middle Name</TableCell>
+                                                    <TableCell align="right">Last Name</TableCell>
+                                                    <TableCell align="right">Email</TableCell>
+                                                    <TableCell align="right">UserName</TableCell>                                                    
+                                                    <TableCell align="right">Edit|Delete</TableCell>
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
@@ -253,15 +256,15 @@ DeleteStaff=(id)=>{
                                                     return( 
                                                         <TableRow key={staffdata.userName}>
                                                             <TableCell>{staffdata._id}</TableCell>
-                                                            <TableCell>{staffdata.firstName}</TableCell>
-                                                            <TableCell>{staffdata.middleName}</TableCell>
-                                                            <TableCell>{staffdata.lastName}</TableCell>
-                                                            <TableCell>{staffdata.email}</TableCell>
-                                                            <TableCell>{staffdata.userName}</TableCell>
-                                                            <TableCell>{
+                                                            <TableCell align="right">{staffdata.firstName}</TableCell>
+                                                            <TableCell align="right">{staffdata.middleName}</TableCell>
+                                                            <TableCell align="right">{staffdata.lastName}</TableCell>
+                                                            <TableCell align="right">{staffdata.email}</TableCell>
+                                                            <TableCell align="right">{staffdata.userName}</TableCell>
+                                                            <TableCell align="right">{
                                                                 <span>
                                                                     <button class="btn"><a href={"/Staff/"+staffdata._id} ><EditIcon></EditIcon></a></button>
-                                                                     | <button class="btn" onClick={()=>this.DeleteStaff(staffdata._id)}><DeleteIcon></DeleteIcon></button> 
+                                                                    <button class="btn" onClick={()=>this.DeleteStaff(staffdata._id)}><DeleteIcon></DeleteIcon></button> 
                                                                 </span>
                                                                         }
                                                             </TableCell>
@@ -271,6 +274,16 @@ DeleteStaff=(id)=>{
                                                 }
                                             </TableBody>
                                         </Table> 
+									</TableContainer>
+                                    <TablePagination
+                                        rowsPerPageOptions={[5, 10, 25]}
+                                        component="div"
+                                        // count={rows.length}
+                                        // rowsPerPage={rowsPerPage}
+                                        // page={page}
+                                        // onPageChange={handleChangePage}
+                                        // onRowsPerPageChange={handleChangeRowsPerPage}
+                                        />	
                             </div>
                     </div>
                 </div> 

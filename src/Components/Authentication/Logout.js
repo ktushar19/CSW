@@ -18,10 +18,10 @@ class Logout extends Component {
     }
 
     logout = () => {
-        //localStorage.clear("token");
+        localStorage.clear("token");
         localStorage.clear();
         this.setState({navigate:true});
-        window.location = '/Login';
+        window.location = '/';
     }
 
     render() {

@@ -12,103 +12,117 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
+
 class Register extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            firstName: '',
+            instituteName: '',
+            email: '',
+            password: '',
+            errors: {},
+        }
         this.fnCreateAccount = this.fnCreateAccount.bind(this);
         this.HandleChange = this.HandleChange.bind(this);
         this.fnShowError = this.fnShowError.bind(this);
         this.fnValidateRegistrationForm = this.fnValidateRegistrationForm.bind(this);
-        this.state = {
-            fields: {},
-            errors: {},
-        }
+        
     }
 
     fnCreateAccount(e) {
         e.preventDefault()
-        if (this.fnValidateRegistrationForm()) {
-            let fields = {};
-            fields["FirstName"] = "";
-            fields["LastName"] = "";
-            fields["Email"] = "";
-            fields["Phone"] = "";
-            fields["Password"] = "";
-            this.setState({ fields: fields });
+        const isValid = this.fnValidateRegistrationForm();        
+        if(!isValid)
+        {    
+        }
+    else{
+
             const signUpRequest = {
-                firstName: this.state.fields.FirstName,
-               // lastName: this.state.fields.LastName,
-                emailAddress: this.state.fields.Email,
-               // phoneNumber: this.state.fields.Phone,
-                password: this.state.fields.Password,
-                instituteName: this.state.fields.InstituteName
+                firstName: this.state.firstName,                
+                instituteName: this.state.instituteName,
+                email: this.state.email,
+                password: this.state.password
             }
-            axios.post('http://13.126.105.95:8091/api/auth/signup', signUpRequest)
-                .then(response => {
-                    alert(JSON.stringify(response.data))
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
+
+            axios.post('http://localhost:4000/app/Register', signUpRequest)
+        .then(response => {
+            //console.log(response.data);
+            alert("Data Inserted Successfully!");
+            window.location = "/";
+        })        
+
+        this.setState({
+            firstName: '',
+            email:'',
+            instituteName: '',
+            password: ''
+        })  
         }
     }
 
-    HandleChange(e) {
-        let fields = this.state.fields;
-        fields[e.target.name] = e.target.value;
-        this.setState({
-            fields
-        });
-    }
+   //need commn filed
+   HandleChange= (e) =>
+   {       
+       e.preventDefault();    
+    
+       console.log(e.target.name);
+       console.log(e.target.value);
+       this.setState(
+           {
+               
+               [e.target.name] : e.target.value,
+           }
+       )
+   }
 
     fnShowError(Error) {
         this.state.strErrMessage = Error;
         this.ErrorBox.visible = true;
         document.getElementById("DivErrorContainer").style.display = "block";
-
     }
 
     fnValidateRegistrationForm = () => {
-        let fields = this.state.fields;
+        let fields = this.state;
         let errors = {};
         let formIsValid = true;
 
-        if (!fields["FirstName"]) {
+        if (!fields["firstName"]) {
             formIsValid = false;
-            errors["FirstName"] = "*Please enter your firstname.";
+            errors["firstName"] = "*Please enter your firstName.";
         }
 
-        if (typeof fields["FirstName"] !== "undefined") {
-            if (!fields["FirstName"].match(/^[a-zA-Z ]*$/)) {
+        if (typeof fields["firstName"] !== "undefined") {
+            if (!fields["firstName"].match(/^[a-zA-Z ]*$/)) {
                 formIsValid = false;
-                errors["FirstName"] = "*Please enter alphabet characters only.";
+                errors["firstName"] = "*Please enter alphabet characters only.";
             }
         }
 
-        if (!fields["InstituteName"]) {
+        if (!fields["instituteName"]) {
             formIsValid = false;
-            errors["InstituteName"] = "*Please enter your institute name.";
+            errors["instituteName"] = "*Please enter your institute name.";
         }
 
-        if (typeof fields["InstituteName"] !== "undefined") {
-            if (!fields["InstituteName"].match(/^[a-zA-Z ]*$/)) {
+        if (typeof fields["instituteName"] !== "undefined") {
+            if (!fields["instituteName"].match(/^[a-zA-Z ]*$/)) {
                 formIsValid = false;
-                errors["InstituteName"] = "*Please enter alphabet characters only.";
+                errors["instituteName"] = "*Please enter alphabet characters only.";
             }
         }
 
 
-        if (!fields["Email"]) {
+        if (!fields["email"]) {
             formIsValid = false;
-            errors["Email"] = "*Please enter your email-ID.";
+            errors["email"] = "*Please enter your email-ID.";
         }
 
-        if (typeof fields["Email"] !== "undefined") {
+        if (typeof fields["email"] !== "undefined") {
             var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-            if (!pattern.test(fields["Email"])) {
+            if (!pattern.test(fields["email"])) {
                 formIsValid = false;
-                errors["Email"] = "*Please enter valid email-ID.";
+                errors["email"] = "*Please enter valid email-ID.";
             }
         }
 
@@ -124,15 +138,15 @@ class Register extends Component {
             }
         }*/
 
-        if (!fields["Password"]) {
+        if (!fields["password"]) {
             formIsValid = false;
-            errors["Password"] = "*Please enter your password.";
+            errors["password"] = "*Please enter your password.";
         }
 
-        if (typeof fields["Password"] !== "undefined") {
-            if (!fields["Password"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
+        if (typeof fields["password"] !== "undefined") {
+            if (!fields["password"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
                 formIsValid = false;
-                errors["Password"] = "*Please enter secure and strong password.";
+                errors["password"] = "*Please enter secure and strong password.";
             }
         }
 
@@ -156,43 +170,43 @@ class Register extends Component {
                             <h2 class="text-center">Sign Up For Your Account</h2>
                             <form class="login-form">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1" class="text-captialize">First Name</label>
+                                    <label for="exampleInputemail1" class="text-captialize">First Name</label>
                                     <input type="text" class="form-control" placeholder="" 
-                                        value={this.state.fields.FirstName}
+                                        value={this.state.firstName}
                                         onChange={this.HandleChange}
-                                        name="FirstName"/>
-                                    <div class="DivErrorMessage">{this.state.errors.FirstName}</div>
+                                        name="firstName"/>
+                                    <div class="DivErrorMessage">{this.state.errors.firstName}</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1" class="text-captialize">Institute Name</label>
+                                    <label for="exampleInputemail1" class="text-captialize">Institute Name</label>
                                     <input type="text" class="form-control" placeholder="" 
-                                        name="InstituteName"
-                                        value={this.state.fields.InstituteName}
+                                        name="instituteName"
+                                        value={this.state.instituteName}
                                         onChange={this.HandleChange}/>
-                                    <div class="DivErrorMessage">{this.state.errors.InstituteName}</div>
+                                    <div class="DivErrorMessage">{this.state.errors.instituteName}</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1" class="text-captialize">Email</label>
+                                    <label for="exampleInputemail1" class="text-captialize">email</label>
                                     <input type="text" class="form-control" placeholder="" 
-                                        value={this.state.fields.Email}
+                                        value={this.state.email}
                                         onChange={this.HandleChange}
-                                        name="Email"/>
-                                    <div class="DivErrorMessage">{this.state.errors.Email}</div>
+                                        name="email"/>
+                                    <div class="DivErrorMessage">{this.state.errors.email}</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1" class="text-captialize">Password</label>
+                                    <label for="exampleInputpassword1" class="text-captialize">password</label>
                                     <input type="password" class="form-control" placeholder="" 
-                                        name="Password"
-                                     value={this.state.fields.Password}
+                                        name="password"
+                                     value={this.state.password}
                                      onChange={this.HandleChange}/>
-                                     <div class="DivErrorMessage">{this.state.errors.Password}</div>
+                                     <div class="DivErrorMessage">{this.state.errors.password}</div>
                                 </div>
                                 <Container id="DivErrorContainer" style={{ display: 'none' }}>
                                                 <Alert severity="error">{this.state.strErrMessage}</Alert>
                                 </Container>
                                 <button class="btn btn-register float-right"  onClick={this.fnCreateAccount}>Register</button>
                                 <div class='LoginAccountExists'>
-                                   Already Have an account <a href="Login">Click here to Login</a>
+                                   Already Have an account <a href="/">Click here to Login</a>
                                 </div>
                             </form>
                         </div>
@@ -201,109 +215,9 @@ class Register extends Component {
                         </div>
                      </div>
                     </div>
-                </section>
+                </section>        
 
-                                            {/* <div class='HeaderSection'>Sign up for your account
-                                            </div>
-                                            <Divider></Divider>
-                                            <Container id="DivErrorContainer" style={{ display: 'none' }}>
-                                                <Alert severity="error">{this.state.strErrMessage}</Alert>
-                                            </Container>
-                                            <div class='DetailsSection'>
-                                                <div class='MarginNormal'>
-                                                    <TextField
-                                                        label="First Name"
-                                                        variant="outlined"
-                                                        id='idFirstName'
-                                                        value={this.state.fields.FirstName}
-                                                        onChange={this.HandleChange}
-                                                        name="FirstName"
-                                                    />
-                                                    <div class="DivErrorMessage">{this.state.errors.FirstName}</div>
-                                                </div>
-                                               { /* <div class='MarginNormal'>
-                                                    <TextField
-                                                        label="Last name"
-                                                        variant="outlined"
-                                                        id='idLastName'
-                                                        name="LastName"
-                                                        value={this.state.fields.LastName}
-                                                        onChange={this.HandleChange}
-                                                    />
-                                                    <div class="DivErrorMessage">{this.state.errors.LastName}</div>
-                                                </div> 
-                                                <div class='MarginNormal'>
-                                                    <TextField fullWidth
-                                                        label="Institute Name"
-                                                        variant="outlined"
-                                                        id='idInstituteName'
-                                                        name="InstituteName"
-                                                        value={this.state.fields.InstituteName}
-                                                        onChange={this.HandleChange}
-                                                    />
-                                                    <div class="DivErrorMessage">{this.state.errors.InstituteName}</div>
-                                                </div>
-                                                <div class='MarginNormal'>
-                                                    <TextField
-                                                        label="Email Address"
-                                                        variant="outlined"
-                                                        id='idEmail'
-                                                        value={this.state.fields.Email}
-                                                        onChange={this.HandleChange}
-                                                        name="Email"
-                                                    />
-                                                    <div class="DivErrorMessage">{this.state.errors.Email}</div>
-
-                                                </div>
-                                               { /* <div class='MarginNormal'>
-                                                    <TextField
-                                                        label="Phone Number"
-                                                        variant="outlined"
-                                                        id='idPhone'
-                                                        value={this.state.fields.Phone}
-                                                        onChange={this.HandleChange}
-                                                        name="Phone"
-                                                    />
-                                                    <div class="DivErrorMessage">{this.state.errors.Phone}</div>
-                                            </div> 
-                                                <div class='MarginNormal'>
-                                                    <TextField
-                                                        label="Password"
-                                                        type="password"
-                                                        variant="outlined"
-                                                        id='idPassword'
-                                                        value={this.state.fields.Password}
-                                                        onChange={this.HandleChange}
-                                                        name="Password"
-                                                    />
-                                                    <div class="DivErrorMessage">{this.state.errors.Password}</div>
-                                                </div>
-                                                <Divider></Divider>
-                                                <div class='MarginNormal'>
-                                                    <Button
-                                                        variant="outlined"
-                                                        style={{
-                                                            border: "1px solid #2d70d8",
-                                                            color: "black",
-                                                            height: "50px",
-                                                            backgroundColor: "goldenrod",
-                                                            fontWeight: "bolder",
-                                                            marginBottom: "10px",
-                                                        }}
-                                                        onClick={this.fnCreateAccount}
-
-
-                                                    >
-                                                        <ExitToAppIcon></ExitToAppIcon>Register
-                                                    </Button>
-                                                </div>
-                                                <Divider></Divider>
-                                                <div class='LoginAccountExists'>
-                                                    Already Have an account <a href="Login">Click here to Login</a>
-                                                </div>
-                                            </div> */}
-
-                                        </React.Fragment>
+                </React.Fragment>
         )
     }
 }

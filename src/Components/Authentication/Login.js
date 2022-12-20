@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import '../../App.css';
 import axios from 'axios';
-
 import TextField from "@material-ui/core/TextField";
 import { colors, Container } from '@material-ui/core'
 import Button from '@material-ui/core/Button';
+import Dashboard from '../scp-school-admin-dashboard/Dashboard';
 
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider'
-
 import { Alert, AlertTitle } from '@material-ui/lab';
-
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import DoneIcon from '@material-ui/icons/Done'
@@ -46,24 +44,29 @@ class Login extends Component {
         e.preventDefault();
         if (this.fnValidateLoginForm()) {
             let fields = {};
-            fields["Email"] = "";
-            fields["Password"] = "";
+            fields["email"] = "";
+            fields["password"] = "";
             this.setState({ fields: fields });
 
             const signInRequest = {
-                userName: this.state.fields.Email,
-                password: this.state.fields.Password
+                email: this.state.fields.email,
+                password: this.state.fields.password
             }
 
-            axios.post('http://13.126.105.95:8091/api/auth/signin', signInRequest)
+            axios.post('http://localhost:4000/app/', signInRequest)
                 .then(response => {
                     console.log(response.data);
-                    localStorage.setItem("authorization",response.data.jwtToken);
-                    localStorage.setItem("userName",response.data.userName);
-                    window.location = "/Dashboard";
+                    //localStorage.setItem("jwtToken",response.data.token);
+                    localStorage.setItem("email",response.data.email);
+                   alert("Login Successfull !");
+                   window.location = "/Dashboard";
+                    // if (response.data.token) {
+                    //     window.location = "/Dashboard";
+                    // }
+                    
                 })
                 .catch((error) => {
-                    alert("User not yet activated/verified...") 
+                    //alert("User not yet activated/verified...") 
                     console.log(error);
                 })
         }
@@ -76,28 +79,28 @@ class Login extends Component {
         let formIsValid = true;
 
 
-        if (!fields["Email"]) {
+        if (!fields["email"]) {
             formIsValid = false;
-            errors["Email"] = "*Please enter your email-ID.";
+            errors["email"] = "*Please enter your email-ID.";
         }
 
-        if (typeof fields["Email"] !== "undefined") {
+        if (typeof fields["email"] !== "undefined") {
             var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-            if (!pattern.test(fields["Email"])) {
+            if (!pattern.test(fields["email"])) {
                 formIsValid = false;
-                errors["Email"] = "*Please enter valid email-ID.";
+                errors["email"] = "*Please enter valid email-ID.";
             }
         }
 
-        if (!fields["Password"]) {
+        if (!fields["password"]) {
             formIsValid = false;
-            errors["Password"] = "*Please enter your password.";
+            errors["password"] = "*Please enter your password.";
         }
 
-        if (typeof fields["Password"] !== "undefined") {
-            if (!fields["Password"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
+        if (typeof fields["password"] !== "undefined") {
+            if (!fields["password"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
                 formIsValid = false;
-                errors["Password"] = "*Please enter secure and strong password.";
+                errors["password"] = "*Please enter valid Password.";
             }
         }
 
@@ -118,20 +121,20 @@ class Login extends Component {
                             <h2 class="text-center">Login Now</h2>
                             <form class="login-form">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1" class="text-captialize">Email</label>
+                                    <label for="exampleInputemail1" class="text-captialize">Email</label>
                                     <input type="text" class="form-control" placeholder="" 
-                                        name="Email"
-                                        value={this.state.fields.Email}
+                                        name="email"
+                                        value={this.state.fields.email}
                                         onChange={this.HandleChange}/>
-                                    <div class="DivErrorMessage">{this.state.errors.Email}</div>
+                                    <div class="DivErrorMessage">{this.state.errors.email}</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1" class="text-captialize">Password</label>
+                                    <label for="exampleInputpassword1" class="text-captialize">Password</label>
                                     <input type="password" class="form-control" placeholder="" 
-                                        name="Password"
-                                     value={this.state.fields.Password}
+                                        name="password"
+                                     value={this.state.fields.password}
                                      onChange={this.HandleChange}/>
-                                     <div class="DivErrorMessage">{this.state.errors.Password}</div>
+                                     <div class="DivErrorMessage">{this.state.errors.password}</div>
                                 </div>
                 
                 
@@ -145,7 +148,9 @@ class Login extends Component {
                                                 <Alert severity="error">{this.state.strErrMessage}</Alert>
                                 </Container>
                                 <button type="submit" class="btn btn-login float-right" onClick={this.fnLogin}>Submit</button>
-                            
+                                <div class='LoginAccountExists'>
+                                   Create a New Account <a href="/Register">Click here to Register</a>
+                                </div>
                             </form>
                         </div>
                         <div class="col-md-7 banner-sec">
@@ -163,28 +168,28 @@ class Login extends Component {
                                             <div class='DetailsSection'>
                                                 <div class='MarginNormal'>
                                                     <TextField
-                                                        label="Email Address"
+                                                        label="email Address"
 
                                                         variant="outlined"
-                                                        name="Email"
-                                                        value={this.state.fields.Email}
+                                                        name="email"
+                                                        value={this.state.fields.email}
                                                         onChange={this.HandleChange}
                                                     />
-                                                    <div class="DivErrorMessage">{this.state.errors.Email}</div>
+                                                    <div class="DivErrorMessage">{this.state.errors.email}</div>
 
                                                 </div>
 
 
                                                 <div class='MarginNormal'>
                                                     <TextField
-                                                        label="Password"
+                                                        label="password"
                                                         type="password"
                                                         variant="outlined"
-                                                        name="Password"
-                                                        value={this.state.fields.Password}
+                                                        name="password"
+                                                        value={this.state.fields.password}
                                                         onChange={this.HandleChange}
                                                     />
-                                                    <div class="DivErrorMessage">{this.state.errors.Password}</div>
+                                                    <div class="DivErrorMessage">{this.state.errors.password}</div>
 
                                                 </div>
 

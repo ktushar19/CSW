@@ -97,7 +97,7 @@ a.signout-btn {
 	padding: 10px;
 }
 .MuiTableCell-root{
-	padding: 5px !important;
+	padding: 5px 10px !important;
     border: 1px solid #000;
 }
 .makeStyles-menuButton-5{
@@ -709,24 +709,24 @@ min-height: 50px;
 	color: #fff !important;
 }
 .menu-bar ul li a:hover{
-	background-color: #034e9f;
+	background-color: #17a2b8;
 	color: #fff !important;
 }
 .menu-bar ul li a:active{
-	background-color: #034e9f;
+	background-color: #17a2b8;
 }
 .menu-bar ul li:hover .sub-menu-1:hover{
-	background-color: #034e9f;
+	background-color: #17a2b8;
 }
 .MuiAppBar-colorPrimary {
     color: #fff;
-    background-color: #039be5;
+    background-color: #17a2b8 !important;
 }
 .MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
     background-color: #3f51b5 !important;
     color: #fff;
-    top: 40px !important;
-    left: 1120px !important;
+    /* top: 40px !important;
+    left: 1120px !important; */
 }
 .cloudschoolfooter {
     background-color: #3f51b5 !important;
@@ -744,13 +744,6 @@ a#backButtonIndex {
     border: 1px solid #000;
 	border-radius: 25px;
 	padding: 3px 5px;
-}
-.toolbar-button {
-    background-color: #f7f7f7 !important;
-	border: 1px solid #c1c1c1;
-    color: #000 !important;
-    padding: 0px 15px;
-	margin: 0px -15px;
 }
 .toolbar-heading.margin-top-5 {
     padding: 6px;
@@ -807,7 +800,7 @@ button#dropdown-basic:focus {
 .MuiListSubheader-inset {
     padding-left: 62px !important;
 }
-.MuiList-root {
+.MuiDrawer-paperAnchorDockedLeft .MuiList-root {
     overflow-x: hidden !important;
     height: 500px !important;
     overflow-y: auto;
@@ -855,15 +848,6 @@ input#date {
     border-radius: 3px;
     padding: 6px 0px 6px 5px;
 }
-fieldset.scheduler-border {
-    border: 1px dotted #ddd !important;
-    padding: 0 1em 0.5em 1em !important;
-    margin: 0 0 0.5em 0 !important;
-    -webkit-box-shadow: 0 0 0 0 #676a6c;
-    box-shadow: 0 0 0 0 #676a6c;
-    background-color: #f5f7f9;
-    border-radius: 4px;
-}
 legend.scheduler-border {
     font-size: 12px !important;
     font-weight: normal !important;
@@ -906,10 +890,7 @@ button#submit {
     font-weight: bold;
     text-align: center;
 }
-button#create:hover {
-    background-color: blue;
-    color: #fff;
-}
+
 .makeStyles-content-9{
     padding: 0px !important;
 }
@@ -918,18 +899,6 @@ button#create:hover {
     padding-right: 0px !important;
 }
 #existing:hover{
-    background-color: #1ab394;
-    color: #fff;
-}
-button.searchbtn {
-    padding: 5px 15px;
-    background-color: transparent;
-    border: 1px solid #000;
-    border-radius: 5px;
-    margin-top: 29px;
-    float: right;
-}
-button.searchbtn:hover {
     background-color: #1ab394;
     color: #fff;
 }
@@ -1059,6 +1028,7 @@ button.searchbtn:hover {
     font-weight: 600;
     margin: 20px 0px;
     width: 100%;
+    text-transform: uppercase;
 }
 .btn-register {
 	background: #00afd8;
@@ -1109,16 +1079,46 @@ button.searchbtn:hover {
 .MuiIconButton-edgeStart {
     margin-left: 0px !important;
 }
-.MuiAppBar-colorPrimary {
+/* .MuiAppBar-colorPrimary {
     color: #000 !important;
     background-color: #ffffff !important;
+} */
+.dropdown-menu{
+    -webkit-transition: all .5s ease-out;
+    transition: all .5s ease-out;
+    transform: rotateX(90deg);
+    transform-origin: top;
+    opacity: 0;
+}
+.dropdown-menu.show{
+    opacity: 1;
+    transform: rotateX(0deg);
+    transform-origin: top;
 }
 button#dropdown-basic {
     background-color:transparent !important;
-    color: #000;
+    color: #fff;
 	border: none !important;
-	margin-left: 10px;
 	display: flex;
+}
+button#dropdown-basic1 {
+    background-color: transparent !important;
+    color: #000;
+    border: none !important;
+    display: flex;
+}
+.btn:visited, .btn-secondary:visited{
+    outline: none !important;
+}
+.dropdown:visited {
+    outline: none !important;
+}
+.show.dropdown:visited {
+    outline: none !important;
+}
+.btn-group:visited {
+    border: none !important;
+    outline: none !important;
 }
 .MuiPaper-root {
     color: rgba(0, 0, 0, 0.87);
@@ -1134,6 +1134,7 @@ button#dropdown-basic {
     color: white;
     text-align: center;
     padding: 5px 0px;
+    z-index: 1;
 }
 .MuiListItemIcon-root{
     color: #000;
@@ -1163,11 +1164,14 @@ button#dropdown-basic {
     border-radius: .55rem;
     margin-right: 15px;
 }
-.dash-card svg {
+.dashboard svg {
     color: #17a2b8;
     font-size: 35px;
     line-height: 50px;
     margin: auto;
+}
+.mastermenu svg {
+    color: #17a2b8;
 }
 hr {
     margin-top: 1rem;
@@ -1175,4 +1179,69 @@ hr {
     border: 0;
     border-top: 1px solid rgba(0,0,0,.1);
 }
+.dashboard {
+    margin-bottom: 40px;
+}
+.MuiPaper-elevation4 {
+    box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%) !important;
+}
+.MuiPaper-elevation1 {
+    box-shadow: 0px 7px 4px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%) !important;
+}
+
+/*staffdetails css start*/
+th.MuiTableCell-root.MuiTableCell-head {
+    background: #17a2b8;
+    text-align: center;
+    box-shadow: 0px 7px 4px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%) !important;
+    color: #fff;
+    font-weight: bold;
+}
+tbody.MuiTableBody-root tr:nth-child(even) {
+    background-color: lightgray;
+}
+.toolbar-button {
+    background-color: #f7f7f7 !important;
+    color: #000 !important;
+    padding: 5px 15px;
+    margin: 15px 0 15px 0px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 3px 0 #676a6c61;
+}
+
+fieldset.scheduler-border {
+    padding: 1em !important;
+    margin: 0 0 15px 0 !important;
+    box-shadow: 2px 2px 3px 0 #676a6c61;
+    background-color: #f5f7f9;
+    border-radius: 4px;
+}
+
+button.searchbtn {
+    padding: 5px 15px;
+    background-color: transparent;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin-top: 29px;
+    float: right;
+    font-size: 16px;
+}
+.searchbtn:hover{
+    background-color: #17a2b8;
+    color: #fff !important;
+}
+.searchbtn svg.MuiSvgIcon-root {
+    color: #17a2b8;
+}
+.toolbar-button .btn svg {
+    color: #17a2b8;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+button#create:hover {
+    background-color: #17a2b8;
+    color: #fff !important;
+}
+/*staffdetails css end*/
+
 /*DashBoard css end*/

@@ -1,6 +1,10 @@
-GET  http://localhost:4000/app/Staff/60c4e19e89af182900ccd7bf
+POST  http://localhost:4000/app/Register
 Content-Type: application/json
 
 {    
-    
+    "firstName": "Arya",
+    "instituteName": "Arya",
+    "email": "arya19@gmail.com",
+    "password": "arya@19"
 }
+ 

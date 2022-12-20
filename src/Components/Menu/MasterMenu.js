@@ -18,8 +18,8 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import Link from '@material-ui/core/Link';
 
 export const MasterMenu = (
-  <div>                
-    <Link color="inherit" href="/">
+  <div class="mastermenu">                
+    <Link color="inherit" href="/Dashboard">
         <ListItem button>
           <ListItemIcon>
             <DashboardIcon />
@@ -48,12 +48,14 @@ export const MasterMenu = (
           <ListItemText primary="Staff" />
         </ListItem>
     </Link>
+    <Link color="inherit" href="/Student">
     <ListItem button>
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
       <ListItemText primary="Students" />
     </ListItem>
+    </Link>
   <ListItem button>
     <ListItemIcon>
       <ContactPhoneIcon />

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import './App.css';
 
@@ -16,7 +15,6 @@ import MasterMenu from './Components/Menu/MasterMenu';
 import Staff from './Components/Staff/Staff';
 import Student from './Components/Student/Student';
 import CreateAccount from './Components/create-account/CreateAccount';
-import LoginPage from './Components/login-page/LoginPage';
 import StaffDetails from './Components/Staff/StaffDetails';
 import Copyright from './Components/Common/Copyright';
 import ProtectedRoute from './Components/Authentication/ProtectedRoute';
@@ -55,7 +53,9 @@ import {
   useHistory,
 } from "react-router-dom";
 import { GridOverlay } from '@material-ui/data-grid';
-
+import { Email } from '@material-ui/icons';
+import Demo from './Components/Demo/Demo'
+import DemoClass from './Components/Demo/DemoClass'
 
 /*new css start*/
 const drawerWidth = 240;
@@ -131,6 +131,10 @@ const useStyles = makeStyles((theme) => ({
   },
   blockheader:{
     height: '10vh',
+  },
+  drawerbtn:{
+    marginLeft: '70px',
+    display: 'inline',
   }
 }));
 /*new css end */
@@ -139,6 +143,8 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  //const [loggedInStatus, setLoggedInStatus] = React.useState(false);
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -147,123 +153,119 @@ function App() {
   };
 
 
-  let isUserAuthenticated = localStorage.getItem("jwtToken") !== null && localStorage.getItem("userName") !== null;
+  let isUserAuthenticated =  localStorage.getItem("email") !== null;
+      
     return (
-      <div className={classes.root}>
-      <CssBaseline />
+      <div className={classes.root}>  
+      {isUserAuthenticated ?
+      <>
       <AppBar position="absolute" >
-        <Toolbar className={classes.toolbar}>          
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
-          </Typography>
-          <IconButton color="inherit">
+      <Toolbar className={classes.toolbar}>          
+        <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+          Dashboard
+          <div className={classes.drawerbtn}>
+          {open?
+        <IconButton 
+          edge="start"
+          color="inherit"
+          onClick={handleDrawerClose}>
+          <ArrowBackIcon />
+        </IconButton>
+        :<IconButton
+          edge="start"
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleDrawerOpen}
+          className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+        >
+          <ArrowForwardIcon />
+        </IconButton>} 
+        </div>
+        </Typography>
+        <IconButton color="inherit">
+          <Badge badgeContent={4} color="secondary">
+            <NotificationsIcon />              
+          </Badge>
+        </IconButton>
+        <IconButton aria-label="show 4 new mails" color="inherit">
             <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />              
+              <MailIcon />
             </Badge>
           </IconButton>
-          <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-          <div className="dropdown">
-                <Dropdown>                    
-                  <Dropdown.Toggle
-                    variant="secondary btn-sm"
-                    id="dropdown-basic">
-                      <Typography noWrap>
-                        <div className={clsx(classes.personIconAlignment)}>
-                        <div className={clsx(classes.loginMessage)}><PersonIcon ></PersonIcon>Welcome {localStorage.getItem("userName")}</div>
-                    
-                      </div>                      
-                    </Typography>
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu >
-                    <Dropdown.Item href="#">Profile</Dropdown.Item>
-                    <Dropdown.Item href="/Logout">Logout</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </div>             
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon} >
-          {/* <div id="logo-element"></div>          */}
-        </div>
-        <Divider />
-         <List>{MasterMenu}</List> 
-        <Divider />
-         {/* <List>{secondaryListItems}</List> */}
-      </Drawer>
-      <main className={classes.content}>        
-      <Container maxWidth="lg" className={classes.container}>
-        <div className={classes.appBarSpacer} />        
-        <div className={classes.blockheader}>
-          {open?
-          <IconButton onClick={handleDrawerClose}>
-            <ArrowBackIcon />
-          </IconButton>
-          :<IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <ArrowForwardIcon />
-          </IconButton>}    
+        <div className="dropdown">
+              <Dropdown>                    
+                <Dropdown.Toggle
+                  variant="secondary btn-sm"
+                  id="dropdown-basic">
+                    <Typography noWrap>
+                      <div className={clsx(classes.personIconAlignment)}>
+                      <div className={clsx(classes.loginMessage)}><PersonIcon ></PersonIcon>Welcome {localStorage.getItem("email")}</div>
+                  
+                    </div>                      
+                  </Typography>
+                </Dropdown.Toggle>
+                <Dropdown.Menu >
+                  <Dropdown.Item href="#">Profile</Dropdown.Item>
+                  <Dropdown.Item href="/">Logout</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>             
+      </Toolbar>
+    </AppBar>
+    <Drawer
+      variant="permanent"
+      classes={{
+        paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+      }}
+      open={open}
+    >
+      <div className={classes.toolbarIcon} >
+        {/* <div id="logo-element"></div>          */}
+      </div>
+      <Divider />
+       <List>{MasterMenu}</List> 
+      <Divider />
+       {/* <List>{secondaryListItems}</List> */}
+    </Drawer>
+    <main className={classes.content}>        
+    <Container maxWidth="lg" className={classes.container}>
+      <div className={classes.appBarSpacer} />        
+      <div className={classes.blockheader}>
       <BrowserRouter>
-        <div>
-          <Switch>
-            <Route path="/" exact component={LoginPage} />
-            <Route path="/Login" exact component={Login} />
-            <Route path="/verify" exact component={ActivateAccount} />
-            <Route path="/Logout" exact component={Logout} />
-            <Route path="/Dashboard" exact component={Dashboard} />
-            <Route path="/Register" exact component={Register} />
-            <Route path="/ForgotPassword" exact component={ForgotPassword} />
-            <Route path="/reset" exact component={ResetPage} />
-            <Route path="/ResetPassword" exact component={ResetPassword} />
-            <Route path="/MasterMenu" exact component={MasterMenu} />
-            <Route path="/Staff" exact component={Staff} />
-            <Route path="/StaffDetails" exact component={StaffDetails} />
-            <Route path="/Student" exact component={Student} />
-            <Route path="/CreateAccount" exact component={CreateAccount} />
-            <Route path="/LoginPage" exact component={LoginPage} />
-            <Route path="/Staff/:id" exact component={Staff} />
-          </Switch>
-        </div>
-        </BrowserRouter>
-              <BrowserRouter>
-                <Switch>
-                  <Route path="/Login" exact component={Login} />
-                  <Route path="/verify" exact component={ActivateAccount} />
-                  <Route path="/Logout" exact component={Logout} />
-                  <Route path="/" exact component={Dashboard} />
-                  <Route path="/Register" exact component={Register} />
-                  <Route path="/ForgotPassword" exact component={ForgotPassword} />
-                  <Route path="/reset" exact component={ResetPage} />
-                  <Route path="/ResetPassword" exact component={ResetPassword} />
-                  <Route path="/MasterMenu" exact component={MasterMenu} />
-                  <Route path="/Staff" exact component={Staff} />
-                  <Route path="/StaffDetails" exact component={StaffDetails} />
-                  <Route path="/Student" exact component={Student} />
-                  <Route path="/CreateAccount" exact component={CreateAccount} />
-                  <Route path="/Staff/:id" exact component={Staff} />
-                </Switch>
-            </BrowserRouter>
-          <Box pt={4}>
+        <Switch>   
+                    <Route path="/verify" exact component={ActivateAccount} />
+                    <Route path="/" exact component={Logout} />
+                    <Route path="/Dashboard" exact component={Dashboard} />                    
+                    <Route path="/ForgotPassword" exact component={ForgotPassword} />
+                    <Route path="/reset" exact component={ResetPage} />
+                    <Route path="/ResetPassword" exact component={ResetPassword} />
+                    <Route path="/MasterMenu" exact component={MasterMenu} />
+                    <Route path="/Staff" exact component={Staff} />
+                    <Route path="/StaffDetails" exact component={StaffDetails} />
+                    <Route path="/Student" exact component={Student} />
+                    <Route path="/CreateAccount" exact component={CreateAccount} />
+                    <Route path="/Staff/:id" exact component={Staff} />
+                    <Route path="/Demo" exact component={Demo} />
+                    <Route path="/DemoClass" exact component={DemoClass} />
+        </Switch>
+      </BrowserRouter>
+      <Box pt={4}>
             <Copyright />
           </Box>
         </div>
         </Container>
       </main>
+      </>  
+      : 
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact component={Login} />
+          <Route path="/Register" exact component={Register} />
+        </Switch>
+      </BrowserRouter>   
+      } 
+      <CssBaseline />
+      
     </div>
       
     );
