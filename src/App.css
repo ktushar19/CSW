@@ -644,3 +644,11 @@
 .required{
   color: red;
 }
+.timeIn, .timeOut{
+  border: 1px solid #000;
+  border-radius: 2px;
+  padding: 5px 10px;
+  background-color: #17a2b8;
+  color: #fff;
+  margin: 10px 0px;
+}

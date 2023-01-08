@@ -399,8 +399,8 @@ fnFetchData=(e)=>{
                                 <legend class="scheduler-border">
 							<PersonIcon></PersonIcon>
 								<span>User Account </span>
-                                
-                                 <button type="button" class="btn btn-sm btn-info btn-outline no-borders smsTooltip" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="Here, you create the Teacher’s online account. A Teacher may logon the account provided by CSW or using a private email that you may register here. In the later case, the Teacher must firstly verify the email account before he or she can access to CSW web portal.." data-original-title="" title=""> <InfoIcon></InfoIcon>Info</button>
+                                 <button type="button" class="btn btn-sm btn-info btn-outline no-borders smsTooltip" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="Here, you create the Teacher’s online account. A Teacher may logon the account provided by CSW or using a private email that you may register here. In the later case, the Teacher must firstly verify the email account before he or she can access to CSW web portal.." data-original-title="" title=""> 
+                                 <InfoIcon></InfoIcon>Info</button>
 						</legend>
                                 <div class="row">
                                 <div class="col-sm-6">
@@ -410,10 +410,6 @@ fnFetchData=(e)=>{
                                 />
                                 </div>
                                 <div class="col-sm-6">
-                                <FormControlLabel
-                                    control={<Switch name="checkedA" />}
-                                    label="Active User Account"
-                                />
                                 </div>
                                 </div>
                                 <div class="row">

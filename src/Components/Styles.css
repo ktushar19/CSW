@@ -800,11 +800,11 @@ button#dropdown-basic:focus {
 .MuiListSubheader-inset {
     padding-left: 62px !important;
 }
-.MuiDrawer-paperAnchorDockedLeft .MuiList-root {
+/* .MuiDrawer-paperAnchorDockedLeft .MuiList-root {
     overflow-x: hidden !important;
     height: 500px !important;
     overflow-y: auto;
-}
+} */
 /* width */
 ::-webkit-scrollbar {
 	width: 0px;
@@ -1245,3 +1245,11 @@ button#create:hover {
 /*staffdetails css end*/
 
 /*DashBoard css end*/
+button.btn.btn-login.float-right:hover {
+    background-color: #ea5d91;
+    color: white;
+}
+button.btn.btn-register.float-right:hover {
+    background-color: #ea5d91;
+    color: white;
+}

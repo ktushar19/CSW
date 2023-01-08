@@ -23,6 +23,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { DataGrid } from '@material-ui/data-grid';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
+import '../Staff/style.css';
 
 var staffdata = [];
 
@@ -241,7 +242,7 @@ DeleteStaff=(id)=>{
                                       <Table  aria-label="simple table">
                                             <TableHead class="thead-light">
                                                 <TableRow>
-                                                    <TableCell>Id</TableCell>
+                                                    {/* <TableCell>Id</TableCell> */}
                                                     <TableCell align="right">First Name</TableCell>
                                                     <TableCell align="right">Middle Name</TableCell>
                                                     <TableCell align="right">Last Name</TableCell>
@@ -255,7 +256,7 @@ DeleteStaff=(id)=>{
                                                 this.state.staffdata.map(staffdata=>{
                                                     return( 
                                                         <TableRow key={staffdata.userName}>
-                                                            <TableCell>{staffdata._id}</TableCell>
+                                                            {/* <TableCell>{staffdata._id}</TableCell> */}
                                                             <TableCell align="right">{staffdata.firstName}</TableCell>
                                                             <TableCell align="right">{staffdata.middleName}</TableCell>
                                                             <TableCell align="right">{staffdata.lastName}</TableCell>

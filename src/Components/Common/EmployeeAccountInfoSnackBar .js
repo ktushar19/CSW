@@ -33,7 +33,7 @@ export default function PositionedSnackbar() {
         anchorOrigin={{ vertical, horizontal }}
         open={open}
         onClose={handleClose}
-        message='Select the "Create New" button to create a new Employee.'
+        message='Here, you create the Employee’s online account. A Employee may logon the account provided by CSW or using a private email that you may register here. In the later case, the Teacher must firstly verify the email account before he or she can access to CSW web portal..'
         key={vertical + horizontal}
       />
     </div>

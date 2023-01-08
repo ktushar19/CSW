@@ -56,6 +56,7 @@ import { GridOverlay } from '@material-ui/data-grid';
 import { Email } from '@material-ui/icons';
 import Demo from './Components/Demo/Demo'
 import DemoClass from './Components/Demo/DemoClass'
+import Attendance from '../src/Components/Staff/Attendance'
 
 /*new css start*/
 const drawerWidth = 240;
@@ -154,7 +155,7 @@ function App() {
 
 
   let isUserAuthenticated =  localStorage.getItem("email") !== null;
-      
+
     return (
       <div className={classes.root}>  
       {isUserAuthenticated ?
@@ -223,7 +224,7 @@ function App() {
         {/* <div id="logo-element"></div>          */}
       </div>
       <Divider />
-       <List>{MasterMenu}</List> 
+       <MasterMenu /> 
       <Divider />
        {/* <List>{secondaryListItems}</List> */}
     </Drawer>
@@ -247,6 +248,7 @@ function App() {
                     <Route path="/Staff/:id" exact component={Staff} />
                     <Route path="/Demo" exact component={Demo} />
                     <Route path="/DemoClass" exact component={DemoClass} />
+                    <Route path="/Attendance" exact component={Attendance} />
         </Switch>
       </BrowserRouter>
       <Box pt={4}>

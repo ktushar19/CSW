@@ -186,7 +186,7 @@ class Register extends Component {
                                     <div class="DivErrorMessage">{this.state.errors.instituteName}</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputemail1" class="text-captialize">email</label>
+                                    <label for="exampleInputemail1" class="text-captialize">Email</label>
                                     <input type="text" class="form-control" placeholder="" 
                                         value={this.state.email}
                                         onChange={this.HandleChange}
@@ -194,7 +194,7 @@ class Register extends Component {
                                     <div class="DivErrorMessage">{this.state.errors.email}</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputpassword1" class="text-captialize">password</label>
+                                    <label for="exampleInputpassword1" class="text-captialize">Password</label>
                                     <input type="password" class="form-control" placeholder="" 
                                         name="password"
                                      value={this.state.password}
